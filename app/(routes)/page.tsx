@@ -2,7 +2,7 @@ import SearchQuery from '@/app/components/SearchQuery';
 
 export default function Home() {
   return (
-    <main className='h-full'>
+    <main className='space-y-16'>
       <section className="h-[600px] relative">
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
           <SearchQuery
@@ -25,8 +25,12 @@ export default function Home() {
         </div>
       </section>
       <section className=' text-white'>
-        Случайные Фанфики
+        <h1 className='text-white text-xl font-semibold tracking-wide text-center'>Категории</h1>
+        <div className='h-[400px] bg-gray-300/30'>
+
+        </div>
       </section>
+
     </main>
   );
 }
