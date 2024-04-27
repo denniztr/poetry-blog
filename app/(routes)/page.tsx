@@ -1,6 +1,7 @@
 import SearchQuery from '@/app/components/SearchQuery';
 import SectionTitle from '@/app/components/SectionTitle';
 import CategoriesSection from '@/app/components/CategoriesSection';
+import FanFictionCardsContainer from '@/app/components/FanFictionCardsContainer';
 
 
 export default function Home() {
@@ -33,9 +34,10 @@ export default function Home() {
       </section>
       <section>
         <SectionTitle>Популярные работы</SectionTitle>
-        <div className='w-full h-80 flex justify-center items-center'>
-          <h2>Карточки с популярными работами</h2>
-        </div>
+        <FanFictionCardsContainer />
+      </section>
+      <section>
+        <SectionTitle>Ещё раздел</SectionTitle>
       </section>
     </main>
   );
