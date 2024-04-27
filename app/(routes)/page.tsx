@@ -1,5 +1,6 @@
 import SearchQuery from '@/app/components/SearchQuery';
 import SectionTitle from '@/app/components/SectionTitle';
+import CategoriesSection from '@/app/components/CategoriesSection';
 
 
 export default function Home() {
@@ -28,9 +29,7 @@ export default function Home() {
       </section>
       <section>
         <SectionTitle>Жанры и категории</SectionTitle>
-        <div className='w-full h-80 flex justify-center items-center'>
-          <h2>Категории</h2>
-        </div>
+        <CategoriesSection />
       </section>
       <section>
         <SectionTitle>Популярные работы</SectionTitle>

@@ -9,7 +9,7 @@ export default function Header() {
           FicLibrary
         </Link>
       </div>
-      <nav>
+      <nav className='hidden md:block'>
         <ul className="text-gray-300 flex space-x-6 items-center font-normal">
           <li className=''>
             <Link href="/register" className='pb-1 transition duration-300 hover:border-b'>Фанфики</Link>
