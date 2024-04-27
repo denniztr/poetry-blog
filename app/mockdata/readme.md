@@ -1,0 +1,1 @@
+Mock data is relevant for development when there's no existing database
