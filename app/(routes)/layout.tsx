@@ -1,5 +1,11 @@
-export default function Layout({ children }: {children: React.ReactNode}) {
+import Header from '@/app/components/Header';
+import Footer from '@/app/components/Footer';
+
+export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <section className="max-w-[1440px] m-auto px-10">{children}</section>
-  )
+    <section>
+      <Header />
+      <section className="relative z-10">{children}</section>
+    </section>
+  );
 }
