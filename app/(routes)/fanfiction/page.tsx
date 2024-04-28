@@ -3,7 +3,7 @@ import FanFictionCardsContainer from '@/app/components/FanFictionCardsContainer'
 
 export default function Home() {
   return (
-    <main>
+    <main className='text-white'>
       <SectionTitle>Все книги</SectionTitle>
       <section className='h-full'>
         <FanFictionCardsContainer />
