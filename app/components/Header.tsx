@@ -23,32 +23,40 @@ export default function Header() {
             <li className="">
               <Link
                 href="/fanfiction"
-                className="pb-1 transition duration-300 hover:border-b"
+                className="text-sm pb-1 transition duration-300 hover:border-b"
               >
                 Фанфики
               </Link>
             </li>
             <li>
               <Link
-                href="/register"
-                className="pb-1 transition duration-300 hover:border-b"
+                href="/authors"
+                className="text-sm pb-1 transition duration-300 hover:border-b"
               >
                 Авторы
               </Link>
             </li>
             <li>
               <Link
-                href="/register"
-                className="pb-1 transition duration-300 hover:border-b"
+                href="/popular"
+                className="text-sm pb-1 transition duration-300 hover:border-b"
               >
                 Популярное
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/orders"
+                className="text-sm pb-1 transition duration-300 hover:border-b"
+              >
+                Заказы
               </Link>
             </li>
             <div className="w-4 h-[1px] bg-white" />
             <li>
               <Link
                 href="/register"
-                className="pb-1 transition duration-300 hover:border-b"
+                className="text-sm pb-1 transition duration-300 hover:border-b"
               >
                 Регистрация
               </Link>
@@ -56,7 +64,7 @@ export default function Header() {
             <li>
               <Link
                 href="/#"
-                className="pb-1 transition duration-300 hover:border-b"
+                className="text-sm pb-1 transition duration-300 hover:border-b"
               >
                 Войти
               </Link>
