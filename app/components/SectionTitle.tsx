@@ -4,7 +4,15 @@ interface SectionTitleProps {
 
 const SectionTitle: React.FC<SectionTitleProps> = ({ children }) => {
   return (
-    <svg height="100" width="800">
+  <svg height="100" width="800">
+
+      <defs>
+        <filter id="text-shadow">
+          <feDropShadow dx="2" dy="2" stdDeviation="2" floodColor="black" />
+        </filter>
+      </defs>
+      
+
       <text
         x="10"
         y="70"
@@ -15,6 +23,7 @@ const SectionTitle: React.FC<SectionTitleProps> = ({ children }) => {
         strokeWidth="1"
         strokeLinejoin="bevel" 
         fill="transparent"
+        filter="url(#text-shadow)"
       >
         {children}
       </text>
