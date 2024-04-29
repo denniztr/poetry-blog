@@ -1,7 +1,9 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+
 import SortingPopUp from '@/app/components/SortingPopUp';
+import SelectedFilters from '@/app/components/SelectedFilters';
 
 import clsx from 'clsx';
 
@@ -9,6 +11,7 @@ import clsx from 'clsx';
 export const SelectorItem = () => {
   const [isOpen, setIsOpen] = useState<string | null>(null);
   const [isButtonActive, setIsButtonActive] = useState<string | null>(null);
+  const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
 
   const categoryRef = useRef<HTMLDivElement | null>(null);
   const genreRef = useRef<HTMLDivElement | null>(null);
@@ -30,7 +33,7 @@ export const SelectorItem = () => {
       setIsButtonActive(null);
     }
 
-    if (isOpen === 'relation' && genreRef.current && !genreRef.current.contains(event.target as Node)) {
+    if (isOpen === 'relation' && relationRef.current && !relationRef.current.contains(event.target as Node)) {
       setIsOpen(null);
       setIsButtonActive(null);
     }
@@ -42,9 +45,18 @@ export const SelectorItem = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [isOpen])
 
+  
+  const removeFilterItem = (filterItem: string) => {
+    if (filterItem) {
+      setSelectedFilters((prevFilters) => {
+        return prevFilters.filter((filter) => filter !== filterItem);
+      })
+    }
+  }
 
   return (
     <>
+    <section className='flex gap-5 items-center'>
       <div className="relative" ref={categoryRef}>
         <button
           onClick={() => togglePopup('category')} 
@@ -54,12 +66,12 @@ export const SelectorItem = () => {
         >
           Категории
         </button>
-        <div className="absolute inline-block h-6 w-6 bg-rose-800 shadow-xl rounded-full -top-3 -right-1 cursor-pointer transition-all duration-300 hover:bg-rose-700">
+        {/* <div className="absolute inline-block h-6 w-6 bg-rose-800 shadow-xl rounded-full -top-3 -right-1 cursor-pointer transition-all duration-300 hover:bg-rose-700">
           <span className="text-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
             14
           </span>
-        </div>
-        {isOpen === 'category' && <SortingPopUp />}
+        </div> */}
+        {isOpen === 'category' && <SortingPopUp setSelectedFilters={setSelectedFilters} />}
       </div>
 
       <div className="relative" ref={genreRef}>
@@ -71,12 +83,12 @@ export const SelectorItem = () => {
         >
           Жанры
         </button>
-        <div className="absolute inline-block h-6 w-6 bg-rose-800 shadow-xl rounded-full -top-3 -right-1 cursor-pointer transition-all duration-300 hover:bg-rose-700">
-          <span className="text-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+        {/* <div className="absolute inline-block h-6 w-6 bg-white/80 shadow-xl rounded-full -top-3 -right-1 cursor-pointer transition-all duration-300 hover:bg-rose-700">
+          <span className="text-gray-800 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
             3
           </span>
-        </div>
-        {isOpen === 'genre' && <SortingPopUp />}
+        </div> */}
+        {isOpen === 'genre' && <SortingPopUp setSelectedFilters={setSelectedFilters}/>}
       </div>
 
       <div className="relative" ref={relationRef}>
@@ -88,7 +100,7 @@ export const SelectorItem = () => {
         >
           Отношения
         </button>
-        {isOpen === 'relation' && <SortingPopUp />}
+        {isOpen === 'relation' && <SortingPopUp setSelectedFilters={setSelectedFilters}/>}
       </div>
         <form className='absolute right-0 space-x-3'>
           <label htmlFor="" >Сортировать по: </label>
@@ -97,6 +109,8 @@ export const SelectorItem = () => {
             <option value="date">дате публикации</option>
           </select>
         </form>
+    </section>
+      <SelectedFilters filterItems={selectedFilters} handleClick={removeFilterItem} />
     </>
   );
 };
