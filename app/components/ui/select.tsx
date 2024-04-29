@@ -85,7 +85,7 @@ export const SelectorItem = () => {
             </div>
           )}
           {isOpen === 'category' && (
-            <SortingPopUp setSelectedFilters={setSelectedFilters} />
+            <SortingPopUp selectedFilters={selectedFilters} setSelectedFilters={setSelectedFilters} />
           )}
         </div>
 
@@ -105,7 +105,7 @@ export const SelectorItem = () => {
           </span>
         </div> */}
           {isOpen === 'genre' && (
-            <SortingPopUp setSelectedFilters={setSelectedFilters} />
+            <SortingPopUp selectedFilters={selectedFilters} setSelectedFilters={setSelectedFilters} />
           )}
         </div>
 
@@ -120,7 +120,7 @@ export const SelectorItem = () => {
             Отношения
           </button>
           {isOpen === 'relation' && (
-            <SortingPopUp setSelectedFilters={setSelectedFilters} />
+            <SortingPopUp selectedFilters={selectedFilters} setSelectedFilters={setSelectedFilters} />
           )}
         </div>
         <form className="absolute right-0 space-x-3">
