@@ -13,8 +13,8 @@ const SelectedFilters: React.FC<SelectedFiltersProps> = ({ filterItems, handleCl
 
   return (
     <section className="absolute pt-4 w-full">
-      <div className="text-gray-400">
-        <ul className="flex space-x-5">
+      <div className="text-gray-400 ">
+        <ul className="h-12 flex flex-wrap space-x-5 overflow-hidden">
           {filterItems?.map((filterItem, index) => (
             <li key={index} className="flex items-center  space-x-2">
               <button 

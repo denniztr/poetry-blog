@@ -13,6 +13,7 @@ const SortingPopUp: React.FC<SortingPopUpProps> = ({ setSelectedFilters }) => {
     setSelectedFilters((prevLabel) => [...(prevLabel || []), label])
   }
 
+
   return (
     <div className="fixed mt-5 p-4 bg-gray-300/95 rounded-md shadow-2xl z-10 border border-gray-400">
       <ul className="space-y-3 text-gray-800">
