@@ -24,7 +24,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         '
       />
       <SectionTitle>Все книги</SectionTitle>
-
       {children}
     </section>
 

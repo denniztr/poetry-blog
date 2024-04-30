@@ -2,7 +2,7 @@ import FanFictionCard from './ui/fanFictionCard';
 
 export default function FanFictionCardsContainer() {
   return (
-    <section className="space-y-10 py-8">
+    <section className="pb-16 space-y-12 md:space-y-10">
       <FanFictionCard
         src="/album1.jpg"
         title="Битва желаний"
