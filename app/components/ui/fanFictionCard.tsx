@@ -93,9 +93,21 @@ const FanFictionCard = ({
           </div>
         </article>
         <MdMoreHoriz className="absolute top-0 right-0 cursor-pointer" size={30} />
-      </div>
-      <div className='sm:block md:hidden w-full flex justify-end'>
-        <button className='self-start text-gray-400 text-sm border border-white rounded-xl bg-transparent py-2 px-4'>Читать</button>
+        <button 
+          className='
+            md:hidden 
+            block 
+            mt-6 
+            w-full 
+            text-gray-400 
+            text-sm border 
+            border-white 
+            rounded-xl 
+            bg-transparent 
+            py-2 
+            px-4
+            '
+          >Читать</button>
       </div>
     </section>
   );
