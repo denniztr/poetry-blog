@@ -14,7 +14,7 @@ const SectionTitle: React.FC<SectionTitleProps> = ({ children }) => {
       
 
       <text
-        x="10"
+        x="0"
         y="70"
         fontFamily="Arial"
         fontSize="68"
