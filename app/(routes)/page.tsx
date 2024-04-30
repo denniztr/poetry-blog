@@ -9,7 +9,7 @@ export default function Home() {
     <main className="text-white relative z-10">
       <section className="h-[680px] relative">
         <div className="absolute inset-0 bg-[url('/bgImage4.png')] bg-no-repeat bg-cover bg-center opacity-45" />
-        <section className="relative z-20 h-full text-white top-20 flex items-center justify-center">
+        <section className="relative z-20 h-full text-white top-20 flex items-center justify-center px-4">
           <SearchQuery
             className="
                 w-[450px]
@@ -29,14 +29,19 @@ export default function Home() {
           />
         </section>
       </section>
-      <section className="max-w-[1240px] m-auto">
+      <section 
+        className="
+          max-w-[1240px] 
+          m-auto 
+          px-4
+          space-y-16
+          ">
         <section className='pt-16'>
           <SectionTitle>Жанры и категории</SectionTitle>
           <CategoriesSection />
         </section>
-        <section className='pt-16'>
+        <section>
           <SectionTitle>Популярные работы</SectionTitle>
-          <FanFictionCardsContainer />
         </section>
       </section>
     </main>

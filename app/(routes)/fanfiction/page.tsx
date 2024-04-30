@@ -9,9 +9,9 @@ export default function Home() {
   return (
     <main className="text-white">
       <Selector />
-      <section>
+      {/* <section>
       <FanFictionCardsContainer />
-      </section>
+      </section> */}
     </main>
   );
 }

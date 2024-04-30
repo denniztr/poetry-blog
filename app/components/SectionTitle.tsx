@@ -1,10 +1,30 @@
+import clsx from "clsx";
+
 interface SectionTitleProps {
   children: React.ReactNode;
 }
 
 const SectionTitle: React.FC<SectionTitleProps> = ({ children }) => {
+
+  const dynamicTitleStyles = () => {
+    if (children === 'Жанры и категории') {
+      return 'text-[32px] md:text-6xl xl:text-7xl'
+    } else if (children === 'Популярные работы') {
+      return 'text-[30px] md:text-6xl xl:text-7xl'
+    }
+
+    return 'text-[32px] md:text-6xl xl:text-7xl'
+  }
+
+
   return (
-  <svg height="100" width="800">
+    <div className="">
+              <svg 
+
+    width="100%"
+    height="100"
+
+  >
 
       <defs>
         <filter id="text-shadow">
@@ -17,7 +37,7 @@ const SectionTitle: React.FC<SectionTitleProps> = ({ children }) => {
         x="0"
         y="70"
         fontFamily="Arial"
-        fontSize="68"
+        className={dynamicTitleStyles()}
         fontWeight='700'
         stroke="white"
         strokeWidth="1"
@@ -28,6 +48,7 @@ const SectionTitle: React.FC<SectionTitleProps> = ({ children }) => {
         {children}
       </text>
     </svg>
+    </div>
   );
 };
 

@@ -12,6 +12,9 @@ const config: Config = {
         lightBackground: 'rgba(247, 249, 247, 1)',
         darkBackground: 'rgba(40, 0, 3, 1)',
       },
+      screens: {
+        sm: '360px',
+      },
     },
   },
   plugins: [],

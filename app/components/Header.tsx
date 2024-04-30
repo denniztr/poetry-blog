@@ -4,14 +4,17 @@ import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 
+import { MdMenu } from "react-icons/md";
+
 import SearchQuery from './SearchQuery';
+
 
 export default function Header() {
   const pathname = usePathname();
 
   return (
     <section className="w-full absolute z-20">
-      <header className="max-w-[1240px] m-auto p-6 flex justify-between">
+      <header className="max-w-[1240px] m-auto p-6 flex justify-between items-center">
         <div className="flex items-center gap-2">
           <div className="h-7 w-8 relative opacity-70">
             <Image
@@ -98,6 +101,9 @@ export default function Header() {
             </li>
           </ul>
         </nav>
+        <div className="block md:hidden text-gray-200 font-semibold">
+          <MdMenu size={25}/>
+        </div>
       </header>
     </section>
   );
