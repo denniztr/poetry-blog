@@ -66,12 +66,30 @@ export const SelectorItem = () => {
 
   return (
     <>
-      <section className="flex gap-5 items-center">
+      <section 
+        className="
+          flex  
+          items-center 
+          justify-between 
+          sm:justify-start
+          sm:gap-4
+        ">
         <div className="relative" ref={categoryRef}>
           <button
             onClick={() => togglePopup('category')}
             className={clsx(
-              `py-2 px-4 border border-gray-400 rounded-xl transition-all duration-300 hover:bg-gray-400/40`,
+              `
+                py-2 
+                px-4 
+                border 
+                border-gray-400 
+                rounded-xl 
+                transition-all 
+                duration-300 
+                hover:bg-gray-400/40
+                text-xs
+                md:text-base
+                `,
               isButtonActive === 'category' && 'bg-gray-400/40'
             )}
           >
@@ -93,7 +111,18 @@ export const SelectorItem = () => {
           <button
             onClick={() => togglePopup('genre')}
             className={clsx(
-              `py-2 px-4 border border-gray-400 rounded-xl transition-all duration-300 hover:bg-gray-400/40`,
+              `
+                py-2 
+                px-4 
+                border 
+                border-gray-400 
+                rounded-xl 
+                transition-all 
+                duration-300 
+                hover:bg-gray-400/40
+                text-xs
+                md:text-base
+                `,
               isButtonActive === 'genre' && 'bg-gray-400/40'
             )}
           >
@@ -113,7 +142,18 @@ export const SelectorItem = () => {
           <button
             onClick={() => togglePopup('relation')}
             className={clsx(
-              `py-2 px-4 border border-gray-400 rounded-xl transition-all duration-300 hover:bg-gray-400/40`,
+              `
+              py-2 
+              px-4 
+              border 
+              border-gray-400 
+              rounded-xl 
+              transition-all 
+              duration-300 
+              hover:bg-gray-400/40
+              text-xs
+              md:text-base
+              `,
               isButtonActive === 'relation' && 'bg-gray-400/40'
             )}
           >
@@ -123,13 +163,13 @@ export const SelectorItem = () => {
             <SortingPopUp selectedFilters={selectedFilters} setSelectedFilters={setSelectedFilters} />
           )}
         </div>
-        <form className="absolute right-0 space-x-3">
+        {/* <form className="absolute right-0 space-x-3">
           <label htmlFor="">Сортировать по: </label>
           <select className="bg-transparent cursor-pointer text-gray-400">
             <option value="popularity">популярности</option>
             <option value="date">дате публикации</option>
           </select>
-        </form>
+        </form> */}
       </section>
       <SelectedFilters
         filterItems={selectedFilters}

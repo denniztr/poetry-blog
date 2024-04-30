@@ -27,26 +27,6 @@ export default function Header() {
           <Link href="/" className="text-white tracking-wide">
             FicLibrary
           </Link>
-          {pathname !== '/' && (
-            <SearchQuery
-              className="
-                      w-[300px]
-                      bg-white
-                      bg-opacity-30
-                      rounded-2xl
-                      ml-4
-                      py-[3px]
-                      px-6
-                      outline-none
-                      transition-all
-                      duration-300
-                      focus:bg-opacity-60
-                      focus:shadow-md
-                      text-black
-                      text-semibold
-                      "
-            />
-          )}
         </div>
         <nav className="hidden md:block">
           <ul className="text-gray-300 flex space-x-6 items-center font-normal">
