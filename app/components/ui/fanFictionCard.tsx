@@ -19,128 +19,96 @@ const FanFictionCard = ({
   relation: string;
 }) => {
   return (
-    <section className="w-full h-72 flex gap-10 relative">
-      <div className="h-72 w-52 shadow-xl shadow-black relative transition-all duration-300 hover:scale-105">
+    <section className="w-full flex gap-6 flex-wrap justify-center md:flex-nowrap">
+      <div>
         <Link href="/">
-          <div className="relative h-72 w-52">
+          <div className="relative h-72 min-w-52 shadow-xl shadow-black transition-all duration-300 hover:scale-105">
             <Image src={src} alt="Album" fill />
           </div>
         </Link>
       </div>
-      <article className="overflow-hidden">
-        <Link href="/" className="inline-block">
-          <h2 className="text-2xl font-semibold hover:underline">{title}</h2>
-        </Link>
-        <ul className="flex gap-2 text-sm text-gray-400 mt-2">
-          <li>
-            <Link href="/" className="p-1 bg-purple-800 rounded-sm">
-              Фемслэш
+      <div className="w-full relative">
+        <article className="text-white">
+          <div className='space-y-3 md:space-y-2'>
+            <Link href="/fanfiction" className="inline-block">
+              <h2 className="text-2xl font-semibold hover:underline">{title}</h2>
             </Link>
-          </li>
-          <li>
-            <Link href="/" className="p-1 bg-green-800 rounded-sm">
-              Гет
-            </Link>
-          </li>
-          <li>
-            <Link href="/" className="p-1 bg-orange-800 rounded-sm">
-              Слэш
-            </Link>
-          </li>
-          <li>
-            <Link href="/" className="p-1 bg-indigo-800 rounded-sm">
-              Фэмслеш
-            </Link>
-          </li>
-          <li>
-            <Link href="/" className="p-1 bg-yellow-800 rounded-sm">
-              Смешанный
-            </Link>
-          </li>
-        </ul>
-        <p className="text-sm text-gray-400 my-2">
-          Автор:{' '}
-          <Link href="/" className="pl-2 hover:underline">
-            {author}
-          </Link>
-        </p>
-        <ul className="flex gap-2 text-sm text-gray-400">
-          <span>Персонажи:</span>
-          <li>
-            <Link href="/" className="hover:underline">
-              Иван Маргодлин
-            </Link>
-          </li>
-          <li>
-            <Link href="/" className="hover:underline">
-              Кукла Поппи
-            </Link>
-          </li>
-          <li>
-            <Link href="/" className="hover:underline">
-              Черника
-            </Link>
-          </li>
-          <li>
-            <Link href="/" className="hover:underline">
-              Продавец кофе
-            </Link>
-          </li>
-        </ul>
-        <ul className="flex gap-2 text-sm text-gray-400 mt-4 mb-6">
-          <span>Теги:</span>
-          <li>
-            <Link
-              href="/"
-              className="p-1 bg-white/30 transition-all duration-300 hover:bg-white/20"
-            >
-              Hurt/Comfort
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/"
-              className="p-1 bg-white/30 transition-all duration-300 hover:bg-white/20"
-            >
-              Детектив
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/"
-              className="p-1 bg-white/30 transition-all duration-300 hover:bg-white/20"
-            >
-              Триллер
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/"
-              className="p-1 bg-white/30 transition-all duration-300 hover:bg-white/20"
-            >
-              Постапокалипсис
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/"
-              className="p-1 bg-white/30 transition-all duration-300 hover:bg-white/20"
-            >
-              Songfic
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/"
-              className="p-1 bg-white/30 transition-all duration-300 hover:bg-white/20"
-            >
-              Драки
-            </Link>
-          </li>
-        </ul>
-        <p className="text-sm text-gray-400">{description}</p>
-      </article>
-      <MdMoreHoriz className="absolute right-0 cursor-pointer" size={30} />
+            <ul className='flex gap-1 flex-wrap text-gray-400 text-xs sm:text-sm md:gap-2'>
+              <li>
+                <Link href='/fanfiction' className="p-1 bg-purple-800 rounded-sm">Фемслэш</Link>
+              </li>
+              <li>
+                <Link href='/fanfiction' className="p-1 bg-green-800 rounded-sm">Слэш</Link>
+              </li>
+              <li>
+                <Link href='/fanfiction' className="p-1 bg-orange-800 rounded-sm">Гет</Link>
+              </li>
+              <li>
+                <Link href='/fanfiction' className="p-1 bg-indigo-800 rounded-sm">Смешанные</Link>
+              </li>
+              <li>
+                <Link href='/fanfiction' className="p-1 bg-yellow-800 rounded-sm">Другие</Link>
+              </li>
+            </ul>
+            <p className='text-xs text-gray-400 sm:text-sm'>Автор: <Link href='/' className='pl-1 hover:underline'>{author}</Link></p>
+            <ul className='flex gap-1 flex-wrap text-gray-400 text-xs sm:text-sm md:gap-2'>
+              <span className='text-xs text-gray-400 sm:text-sm'>Персонажи: </span>
+              <li>
+                <Link href='/' className="hover:underline">Иван Маргодлин</Link>
+              </li>
+              <li>
+                <Link href='/' className="hover:underline">Кукла Поппи</Link>
+              </li>
+              <li>
+                <Link href='/' className="hover:underline">Черника</Link>
+              </li>
+            </ul>
+            <ul className='flex flex-wrap gap-1 text-gray-400 text-xs sm:text-sm md:gap-2'>
+              <span className='text-xs text-gray-400 sm:text-sm'>Теги: </span>
+              <li>
+                <Link href='/' className="hover:underline">Hurt/Comfort</Link>
+              </li>
+              <li>
+                <Link href='/' className="hover:underline">Детекив</Link>
+              </li>
+              <li>
+                <Link href='/' className="hover:underline">Триллер</Link>
+              </li>
+              <li>
+                <Link href='/' className="hover:underline">18+</Link>
+              </li>
+              <li>
+                <Link href='/' className="hover:underline">Драка</Link>
+              </li>
+              <li>
+                <Link href='/' className="hover:underline">Songfic</Link>
+              </li>
+              <li>
+                <Link href='/' className="hover:underline">Постапокалипсис</Link>
+              </li>
+            </ul>
+          </div>
+          <div className='pt-3 text-sm text-gray-500'>
+            <p className='md:h-[97px] xl:h-[120px] overflow-hidden'>{description}</p>
+          </div>
+        </article>
+        <MdMoreHoriz className="absolute top-0 right-0 cursor-pointer" size={30} />
+        <button 
+          className='
+            md:hidden 
+            block 
+            mt-6 
+            w-full 
+            text-gray-400 
+            text-sm border 
+            border-white 
+            rounded-xl 
+            bg-transparent 
+            py-2 
+            px-4
+            '
+          >Читать</button>
+      </div>
     </section>
   );
 };
