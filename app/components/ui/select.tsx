@@ -49,7 +49,7 @@ export const SelectorItem = () => {
       setIsButtonActive(null);
     }
   };
-
+  
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
 
