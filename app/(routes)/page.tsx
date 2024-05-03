@@ -42,6 +42,7 @@ export default function Home() {
         </section>
         <section>
           <SectionTitle>Популярные работы</SectionTitle>
+          <FanFictionCardsContainer />
         </section>
       </section>
     </main>

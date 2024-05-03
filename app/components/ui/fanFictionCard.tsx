@@ -3,7 +3,9 @@ import Image from 'next/image';
 
 import { MdMoreHoriz } from 'react-icons/md';
 
+
 import clsx from 'clsx';
+
 
 const FanFictionCard = ({
   src,
@@ -30,9 +32,11 @@ const FanFictionCard = ({
       <div className="w-full relative">
         <article className="text-white">
           <div className='space-y-3 md:space-y-2'>
-            <Link href="/fanfiction" className="inline-block">
-              <h2 className="text-2xl font-semibold hover:underline">{title}</h2>
-            </Link>
+            <div className='space-x-6'>
+              <Link href="/fanfiction" className="inline-block">
+                <h2 className="text-2xl font-semibold hover:underline">{title}</h2>
+              </Link>
+            </div>
             <ul className='flex gap-1 flex-wrap text-gray-400 text-xs sm:text-sm md:gap-2'>
               <li>
                 <Link href='/fanfiction' className="p-1 bg-purple-800 rounded-sm">Фемслэш</Link>
