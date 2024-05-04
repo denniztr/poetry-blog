@@ -88,7 +88,6 @@ export const SelectorItem = () => {
                 duration-300 
                 hover:bg-gray-400/40
                 text-xs
-                md:text-base
                 `,
               isButtonActive === 'category' && 'bg-gray-400/40'
             )}
@@ -96,8 +95,8 @@ export const SelectorItem = () => {
             Категории
           </button>
           {selectedFilters.length !== 0 && (
-            <div className="absolute inline-block h-6 w-6 bg-rose-800 shadow-xl rounded-full -top-3 -right-1 cursor-pointer transition-all duration-300 hover:bg-rose-700">
-              <span className="text-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+            <div className="absolute inline-block h-5 w-5 bg-rose-800 shadow-xl rounded-full -top-3 -right-1 cursor-pointer transition-all duration-300 hover:bg-rose-700">
+              <span className="text-sm text-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
                 {selectedFilters.length}
               </span>
             </div>
@@ -121,7 +120,6 @@ export const SelectorItem = () => {
                 duration-300 
                 hover:bg-gray-400/40
                 text-xs
-                md:text-base
                 `,
               isButtonActive === 'genre' && 'bg-gray-400/40'
             )}
@@ -152,7 +150,6 @@ export const SelectorItem = () => {
               duration-300 
               hover:bg-gray-400/40
               text-xs
-              md:text-base
               `,
               isButtonActive === 'relation' && 'bg-gray-400/40'
             )}
