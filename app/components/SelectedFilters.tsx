@@ -12,7 +12,7 @@ interface SelectedFiltersProps {
 const SelectedFilters: React.FC<SelectedFiltersProps> = ({ filterItems, handleClick }) => {
 
   return (
-    <section className="absolute pt-4 w-full">
+    <section className="absolute w-full">
       <div className="text-gray-400 ">
         <ul className="h-12 flex flex-wrap space-x-5 overflow-hidden">
           {filterItems?.map((filterItem, index) => (
