@@ -14,12 +14,15 @@ export default function Selector() {
         items-center
         justify-between
         md:justify-start
-        md: gap-4
+        md:gap-4
       "
     >
       {filters.map((filter, index) => (
          <SelectorItem key={index} {...filter} />
       ))}
+      <div>
+        
+      </div>
     </section>
   );
 }
