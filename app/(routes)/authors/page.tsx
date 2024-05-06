@@ -1,4 +1,5 @@
 import SectionTitle from '@/app/components/SectionTitle';
+import ImageModal from '@/app/components/ImageModal';
 
 export default function Home() {
   return (

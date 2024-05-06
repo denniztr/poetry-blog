@@ -1,7 +1,13 @@
+'use client'
+
+import { useState } from 'react';
+
 import Link from 'next/link';
 import Image from 'next/image';
 
 import { MdMoreHoriz } from 'react-icons/md';
+
+import ImageModal from '../ImageModal';
 
 
 import clsx from 'clsx';
@@ -20,14 +26,18 @@ const FanFictionCard = ({
   author: string;
   relation: string;
 }) => {
+
+  const [imageModalOpen, setImageModalOpen] = useState(false)
+
+
   return (
     <section className="w-full flex gap-6 flex-wrap justify-center md:flex-nowrap">
+      <ImageModal src={src} isOpen={imageModalOpen} onClose={() => setImageModalOpen(false)} />
       <div>
-        <Link href="/">
-          <div className="relative h-72 min-w-52 shadow-xl shadow-black transition-all duration-300 hover:scale-105">
-            <Image src={src} alt="Album" fill />
+          <div 
+            className="relative h-72 min-w-52 shadow-xl shadow-black transition-all duration-300 hover:scale-105 cursor-pointer">
+            <Image src={src} alt="Album" fill onClick={() => setImageModalOpen(true)} />
           </div>
-        </Link>
       </div>
       <div className="w-full relative">
         <article className="text-white">

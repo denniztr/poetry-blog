@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <main className="text-white">
       <Selector />
-      <section className='w-full'>
+      <section className='w-full relative'>
         <FanFictionCardsContainer />
       </section>
     </main>
