@@ -12,3 +12,15 @@ body,
 ::-webkit-scrollbar {
   display: none;
 }
+
+input {
+  padding: 0;
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  background-color: transparent;
+  font: inherit; /* По дефолту, шрифтовые свойства, для этих элементов не наследуются */
+  color: inherit;
+  letter-spacing: inherit;
+}
