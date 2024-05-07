@@ -20,9 +20,6 @@ export default function Selector() {
       {filters.map((filter, index) => (
          <SelectorItem key={index} {...filter} />
       ))}
-      <div>
-        
-      </div>
     </section>
   );
 }
