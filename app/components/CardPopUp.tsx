@@ -1,5 +1,7 @@
 'use client';
 
+import Link from 'next/link';
+
 import {
   Popover,
   PopoverButton,
@@ -8,7 +10,7 @@ import {
 } from '@headlessui/react';
 
 import data from '@/app/constants/fanfictionCardMenu';
-import Link from 'next/link';
+import CardMenuItem from './ui/cardMenuItem';
 
 interface CardPopUpProps {
   children: React.ReactNode;
@@ -41,11 +43,11 @@ const CardPopUp: React.FC<CardPopUpProps> = ({ children }) => {
             [--anchor-gap:var(--spacing-5)]
           "
         >
-          {data.map((item, index) => (
-            <Link key={index} href="#" className="text-gray-800">
-              {item.label}
-            </Link>
-          ))}
+          <ul className='space-y-2'>
+            {data.map((item, index) => (
+              <CardMenuItem key={index} {...item} />
+            ))}
+          </ul>
         </PopoverPanel>
       </Transition>
     </Popover>

@@ -27,7 +27,7 @@ const SortingPopUp: React.FC<SortingPopUpProps> = ({
   };
 
   return (
-      <div className="absolute mt-2 p-4 bg-gray-300/95 rounded-md shadow-2xl z-10 border border-gray-400">
+      <div className="absolute mt-2 p-4 bg-gray-300/95 rounded-xl shadow-2xl z-10 border border-gray-400">
         <ul className="space-y-3 text-gray-800">
           {options?.map((option, index) => (
             <li key={index}>

@@ -12,8 +12,6 @@ import ImageModal from '../ImageModal';
 import CardPopUp from '../CardPopUp';
 
 
-import clsx from 'clsx';
-
 
 const FanFictionCard = ({
   src,

@@ -1,18 +1,29 @@
+import { CiHeart } from "react-icons/ci";
+import { CiStar } from "react-icons/ci";
+import { CiUnread } from "react-icons/ci";
+import { IoBookOutline } from "react-icons/io5";
+import { CiBookmarkPlus } from "react-icons/ci";
+
 const data = [
   {
-    label: 'Нравится'
+    label: 'Нравится',
+    icon: CiHeart,
   },
   {
-    label: 'Подписаться'
+    label: 'Подписаться',
+    icon: CiBookmarkPlus,
   },
   {
-    label: 'Прочитано'
+    label: 'Прочитано',
+    icon: IoBookOutline,
   },
   {
-    label: 'В избранное'
+    label: 'В избранное',
+    icon: CiStar,
   },
   {
-    label: 'Скрыть'
+    label: 'Скрыть',
+    icon: CiUnread
   }
 ];
 
