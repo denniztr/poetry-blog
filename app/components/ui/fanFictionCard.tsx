@@ -9,6 +9,8 @@ import { MdMoreHoriz } from 'react-icons/md';
 
 import ImageModal from '../ImageModal';
 
+import CardPopUp from '../CardPopUp';
+
 
 import clsx from 'clsx';
 
@@ -27,8 +29,8 @@ const FanFictionCard = ({
   relation: string;
 }) => {
 
-  const [imageModalOpen, setImageModalOpen] = useState(false)
-
+  const [imageModalOpen, setImageModalOpen] = useState(false);
+  const [isCardPopupOpen, setIsCardPopupOpen] = useState(false);
 
   return (
     <section className="w-full flex gap-6 flex-wrap justify-center md:flex-nowrap">
@@ -106,7 +108,11 @@ const FanFictionCard = ({
             <p className='md:h-[97px] xl:h-[120px] overflow-hidden'>{description}</p>
           </div>
         </article>
-        <MdMoreHoriz className="absolute top-0 right-0 cursor-pointer" size={30} />
+        <div className='absolute top-0 right-0'>
+          <CardPopUp>
+            <MdMoreHoriz className="cursor-pointer" size={27} /> 
+          </CardPopUp>
+        </div>
         <button 
           className='
             md:hidden 

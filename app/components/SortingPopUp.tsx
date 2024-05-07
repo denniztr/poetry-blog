@@ -1,4 +1,7 @@
-'use client'
+'use client';
+
+import { Fragment } from 'react';
+import { Transition } from '@headlessui/react';
 
 import clsx from 'clsx';
 
@@ -11,10 +14,9 @@ interface SortingPopUpProps {
 const SortingPopUp: React.FC<SortingPopUpProps> = ({
   setSelectedFilters,
   selectedFilters,
-  options
+  options,
 }) => {
-
-
+  
   const handleClick = (option: string) => {
     setSelectedFilters((prevOption) => {
       if (prevOption.includes(option)) {
@@ -25,25 +27,25 @@ const SortingPopUp: React.FC<SortingPopUpProps> = ({
   };
 
   return (
-    <div className="absolute mt-2 p-4 bg-gray-300/95 rounded-md shadow-2xl z-10 border border-gray-400">
-      <ul className="space-y-3 text-gray-800">
-        {options?.map((option, index) => (
-          <li key={index}>
-            <button
-              className={clsx(
-                `
+      <div className="absolute mt-2 p-4 bg-gray-300/95 rounded-md shadow-2xl z-10 border border-gray-400">
+        <ul className="space-y-3 text-gray-800">
+          {options?.map((option, index) => (
+            <li key={index}>
+              <button
+                className={clsx(
+                  `
                 hover:underline
               `,
-                selectedFilters.includes(option) && 'text-rose-800 underline'
-              )}
-              onClick={() => handleClick(option)}
-            >
-              {option}
-            </button>
-          </li>
-        ))}
-      </ul>
-    </div>
+                  selectedFilters.includes(option) && 'text-rose-800 underline'
+                )}
+                onClick={() => handleClick(option)}
+              >
+                {option}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
   );
 };
 
