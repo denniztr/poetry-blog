@@ -1,5 +1,7 @@
 'use client';
 
+import { Redressed } from 'next/font/google';
+
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -7,6 +9,12 @@ import Image from 'next/image';
 import { MdMenu } from "react-icons/md";
 
 import clsx from 'clsx'
+
+
+const redressed = Redressed({
+  subsets: ['latin'],
+  weight: '400'
+})
 
 
 export default function Header() {
@@ -34,7 +42,7 @@ export default function Header() {
               className="object-fit rounded-sm"
             />
           </div>
-          <Link href="/" className="text-white tracking-wide">
+          <Link href="/" className='text-white tracking-wide'>
             FicLibrary
           </Link>
         </div>
