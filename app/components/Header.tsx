@@ -1,19 +1,20 @@
 'use client';
 
-
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 
 import { MdMenu } from "react-icons/md";
 
+import useRoutes from '@/app/hooks/useRoutes';
+
 import clsx from 'clsx'
 
 
 export default function Header() {
   const pathname = usePathname();
-
-
+  const routes = useRoutes();
+  console.log(routes)
   return (
     <section 
       className={
@@ -42,38 +43,25 @@ export default function Header() {
         </div>
         <nav className="hidden md:block">
           <ul className="text-gray-300 flex space-x-6 items-center font-normal">
-            <li className="">
-              <Link
-                href="/fanfiction"
-                className="text-sm pb-1 transition duration-300 hover:border-b"
-              >
-                Фанфики
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/authors"
-                className="text-sm pb-1 transition duration-300 hover:border-b"
-              >
-                Авторы
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/popular"
-                className="text-sm pb-1 transition duration-300 hover:border-b"
-              >
-                Популярное
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/orders"
-                className="text-sm pb-1 transition duration-300 hover:border-b"
-              >
-                Заказы
-              </Link>
-            </li>
+            {routes.map((route, index) => (
+              <li key={index} className='pb-1'>
+                <Link 
+                  className={clsx(
+                    `
+                      text-sm 
+                      pb-1 
+                      transition 
+                      duration-300 
+                      hover:border-b
+                    `, 
+                    route.active && 'border-b'
+                  )}
+                  href={route.path}
+                >
+                  {route.label}
+                </Link>
+              </li>
+            ))}
             <div className="w-4 h-[1px] bg-white" />
             <li>
               <Link
