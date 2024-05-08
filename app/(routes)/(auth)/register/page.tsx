@@ -17,7 +17,6 @@ const redressed = Redressed({
 export default function Home() {
   const [variant, setVariant] = useState<string>('REGISTER');
 
-  console.log(variant)
   return (
     <main className="relative h-screen">
       <section className='h-full max-w-[1240px] m-auto px-10 flex justify-center items-center'>
