@@ -22,7 +22,7 @@ export default function Home() {
     <main className="relative h-screen">
       <section className='h-full max-w-[1240px] m-auto px-10 flex justify-center items-center'>
         <div className='w-full h-[500px] bg-black/40 shadow-xl  text-white flex flex-row'>
-        <div className={clsx(`h-full bg-black w-1/2 flex items-center justify-center rounded-r-3xl`, variant === 'LOGIN' && 'order-2')}>
+        <div className={clsx(`h-full w-1/2 flex items-center justify-center`, variant === 'LOGIN' && 'order-2')}>
           <EmptyState variant={variant} />
         </div>
         <div className='w-full px-8 relative'>

@@ -1,6 +1,5 @@
 'use client';
 
-import { Redressed } from 'next/font/google';
 
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
@@ -11,14 +10,9 @@ import { MdMenu } from "react-icons/md";
 import clsx from 'clsx'
 
 
-const redressed = Redressed({
-  subsets: ['latin'],
-  weight: '400'
-})
-
-
 export default function Header() {
   const pathname = usePathname();
+
 
   return (
     <section 
@@ -91,7 +85,7 @@ export default function Header() {
             </li>
             <li>
               <Link
-                href="/#"
+                href="/register"
                 className="text-sm pb-1 transition duration-300 hover:border-b"
               >
                 Войти
