@@ -1,19 +1,31 @@
 'use client';
 
+
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 
 import { MdMenu } from "react-icons/md";
 
-import SearchQuery from './SearchQuery';
+import clsx from 'clsx'
 
 
 export default function Header() {
   const pathname = usePathname();
 
+
   return (
-    <section className="w-full absolute z-20">
+    <section 
+      className={
+        clsx(
+          `
+            w-full 
+            absolute 
+            z-20
+          `, 
+          pathname === '/register' && 'hidden'
+        )
+      }>
       <header className="max-w-[1240px] m-auto p-6 flex justify-between items-center">
         <div className="flex items-center gap-2">
           <div className="h-7 w-8 relative opacity-70">
@@ -24,7 +36,7 @@ export default function Header() {
               className="object-fit rounded-sm"
             />
           </div>
-          <Link href="/" className="text-white tracking-wide">
+          <Link href="/" className='text-white tracking-wide'>
             FicLibrary
           </Link>
         </div>
@@ -73,7 +85,7 @@ export default function Header() {
             </li>
             <li>
               <Link
-                href="/#"
+                href="/register"
                 className="text-sm pb-1 transition duration-300 hover:border-b"
               >
                 Войти
