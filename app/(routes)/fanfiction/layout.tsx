@@ -21,7 +21,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           text-semibold
         '
       />
-      <SectionTitle>Все книги</SectionTitle>
+      {/* <SectionTitle>Все книги</SectionTitle> */}
       {children}
     </section>
   );
