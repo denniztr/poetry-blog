@@ -1,5 +1,6 @@
 'use client'
 
+import { signIn } from 'next-auth/react';
 import Image from 'next/image';
 import socialButtons from '@/app/constants/socialButtons';
 
@@ -11,8 +12,10 @@ interface AuthSocialButtonsProps {
 
 const AuthSocialButtons: React.FC<AuthSocialButtonsProps> = ({ variant }) => {
 
-  const socialAction = (type: string) => {
-    console.log('click social button: ' + type)
+  const socialAction = (action: string) => {
+    signIn(action, {redirect: false})
+    .then((cb) => console.log(cb))
+    .catch((error) => console.log(error))
   }
 
   return (
