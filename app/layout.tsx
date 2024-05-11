@@ -4,6 +4,8 @@ import { Commissioner } from "next/font/google";
 import { Montserrat } from "next/font/google";
 import { Roboto } from "next/font/google";
 
+import AuthContext from '@/app/context/AuthContext';
+
 import "./globals.css";
 
 const inter = Inter({ subsets: ["cyrillic"] });
@@ -23,7 +25,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru">
-      <body className={montserrat.className}>{children}</body>
+      <body className={montserrat.className}>
+        <AuthContext>
+          {children}
+        </AuthContext>
+      </body>
     </html>
   );
 }

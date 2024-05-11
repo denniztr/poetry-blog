@@ -1,7 +1,8 @@
 'use client';
 
-import { useState, SetStateAction } from 'react';
+import { useState, SetStateAction, useEffect } from 'react';
 import { signIn, useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 import { useForm, SubmitHandler, FieldValues } from 'react-hook-form';
 import Input from '@/app/components/ui/authInput';
 import axios from 'axios';
@@ -13,7 +14,15 @@ interface AuthFormProps {
 }
 
 const AuthForm: React.FC<AuthFormProps> = ({ setVariant, variant }) => {
+  const session = useSession();
+  const router = useRouter();
 
+
+  useEffect(() => {
+    if (session.status === 'authenticated') {
+      router.push('/')
+    }
+  }, [router, session.status])
 
   const [isLoading, setIsLoading] = useState(false);
 
