@@ -48,7 +48,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ setVariant, variant }) => {
       .finally(() => setIsLoading(false))
 
     } else if (variant === 'LOGIN') {
-      signIn('credentials', {...data, redirect: false})
+      signIn('credentials', {...data, redirect: true})
       .then((cb) => { console.log(cb) })
       .catch((error) => console.log(error))
       .finally(() => setIsLoading(false))

@@ -10,7 +10,7 @@ import useRoutes from '@/app/hooks/useRoutes';
 import { signOut } from 'next-auth/react';
 import clsx from 'clsx';
 
-export default function Header({ currentUser }: { currentUser: User[] }) {
+export default function Header({ currentUser }: { currentUser: User }) {
   const pathname = usePathname();
   const routes = useRoutes();
 
