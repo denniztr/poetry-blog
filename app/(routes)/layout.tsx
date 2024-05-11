@@ -1,10 +1,11 @@
 import Header from '@/app/components/Header';
-import Footer from '@/app/components/Footer';
+import getCurrentUser from '@/app/actions/getCurrentUser';
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default async function Layout({ children }: { children: React.ReactNode }) {
+  const currentUser = await getCurrentUser();
   return (
     <section>
-      <Header />
+      <Header currentUser={currentUser} />
       <section className="relative z-10">{children}</section>
     </section>
   );
