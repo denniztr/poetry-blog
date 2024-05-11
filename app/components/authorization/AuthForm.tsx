@@ -49,7 +49,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ setVariant, variant }) => {
       .finally(() => setIsLoading(false))
 
     } else if (variant === 'LOGIN') {
-      signIn('credentials', {...data, redirect: true})
+      signIn('credentials', {...data, redirect: false})
       .then((cb) => { console.log(cb) })
       .catch((error) => console.log(error))
       .finally(() => setIsLoading(false))
@@ -63,7 +63,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ setVariant, variant }) => {
       setVariant('REGISTER');
     }
   };
-
+  console.log(errors)
   return (
     <div className="h-full">
       <form className="space-y-4 pt-4 pb-8" onSubmit={handleSubmit(onSubmit)}>
