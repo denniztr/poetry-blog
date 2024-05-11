@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, SetStateAction } from 'react';
+import { signIn, useSession } from 'next-auth/react';
 import { useForm, SubmitHandler, FieldValues } from 'react-hook-form';
 import Input from '@/app/components/ui/authInput';
 import axios from 'axios';
@@ -12,6 +13,7 @@ interface AuthFormProps {
 }
 
 const AuthForm: React.FC<AuthFormProps> = ({ setVariant, variant }) => {
+
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -28,13 +30,20 @@ const AuthForm: React.FC<AuthFormProps> = ({ setVariant, variant }) => {
   });
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    console.log(data)
     setIsLoading(true)
 
-    axios.post('/api/register', data)
-    .then((cb) => console.log(cb))
-    .catch((error) => console.log(error))
-    .finally(() => setIsLoading(false))
+    if (variant === 'REGISTER') {
+      axios.post('/api/register', data)
+      .then((cb) => console.log(cb))
+      .catch((error) => console.log(error))
+      .finally(() => setIsLoading(false))
+
+    } else if (variant === 'LOGIN') {
+      signIn('credentials', {...data, redirect: false})
+      .then((cb) => { console.log(cb) })
+      .catch((error) => console.log(error))
+      .finally(() => setIsLoading(false))
+    }
   }
 
   const toggleVariant = () => {
