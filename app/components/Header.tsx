@@ -14,7 +14,7 @@ import clsx from 'clsx'
 export default function Header() {
   const pathname = usePathname();
   const routes = useRoutes();
-  console.log(routes)
+
   return (
     <section 
       className={
