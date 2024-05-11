@@ -1,16 +1,16 @@
 const data = [
   {
-    label: 'Vk',
+    type: 'vk',
     alt: 'VkontakteSocialButton',
     image: '/vk.png'
   },
   {
-    label: 'Google',
+    type: 'google',
     alt: 'GoogleSocialButton',
     image: '/google.png',
   },
   {
-    label: 'Yandex',
+    type: 'yandex',
     alt: 'YandexSocialButton',
     image: '/yandex.png'
   },

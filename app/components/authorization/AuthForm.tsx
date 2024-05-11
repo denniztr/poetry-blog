@@ -54,7 +54,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ setVariant, variant }) => {
       .catch((error) => console.log(error))
       .finally(() => setIsLoading(false))
     }
-  }
+  };
 
   const toggleVariant = () => {
     if (variant === 'REGISTER') {
@@ -63,7 +63,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ setVariant, variant }) => {
       setVariant('REGISTER');
     }
   };
-  console.log(errors)
+
   return (
     <div className="h-full">
       <form className="space-y-4 pt-4 pb-8" onSubmit={handleSubmit(onSubmit)}>
@@ -98,7 +98,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ setVariant, variant }) => {
           </button>
         </div>
       </form>
-      <AuthSocialButtons variant={variant} />
+      <AuthSocialButtons variant={variant}/>
       <div className='relative h-28 text-sm text-gray-400'>
         <p>
           {variant === 'REGISTER' ? 'Уже есть аккаунт?' : 'Нет аккаунта?'}

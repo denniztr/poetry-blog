@@ -11,6 +11,10 @@ interface AuthSocialButtonsProps {
 
 const AuthSocialButtons: React.FC<AuthSocialButtonsProps> = ({ variant }) => {
 
+  const socialAction = (type: string) => {
+    console.log('click social button: ' + type)
+  }
+
   return (
     <div className={clsx(`flex items-center justify-between`, variant === 'LOGIN' && 'mt-10')}>
       <h3 className="text-sm text-gray-400">
@@ -18,7 +22,11 @@ const AuthSocialButtons: React.FC<AuthSocialButtonsProps> = ({ variant }) => {
       </h3>
       <div className='flex gap-2'>
         {socialButtons.map((socialButton, index) => (
-          <div key={index} className='relative h-10 w-10 cursor-pointer opacity-60 transition duration-300 hover:opacity-75'>
+          <div 
+            key={index} 
+            className='relative h-10 w-10 cursor-pointer opacity-60 transition duration-300 hover:opacity-75'
+            onClick={() => socialAction(socialButton.type)}
+          >
             <Image src={socialButton.image} alt={socialButton.alt} fill />
           </div>
         ))}
