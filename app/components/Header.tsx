@@ -1,32 +1,30 @@
 'use client';
 
+import { User } from '@prisma/client';
+
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
-
-import { MdMenu } from "react-icons/md";
-
+import { MdMenu } from 'react-icons/md';
 import useRoutes from '@/app/hooks/useRoutes';
+import { signOut } from 'next-auth/react';
+import clsx from 'clsx';
 
-import clsx from 'clsx'
-
-
-export default function Header() {
+export default function Header({ currentUser }: { currentUser: User }) {
   const pathname = usePathname();
   const routes = useRoutes();
-  console.log(routes)
+
   return (
-    <section 
-      className={
-        clsx(
-          `
+    <section
+      className={clsx(
+        `
             w-full 
             absolute 
             z-20
-          `, 
-          pathname === '/register' && 'hidden'
-        )
-      }>
+          `,
+        pathname === '/register' && 'hidden'
+      )}
+    >
       <header className="max-w-[1240px] m-auto p-6 flex justify-between items-center">
         <div className="flex items-center gap-2">
           <div className="h-7 w-8 relative opacity-70">
@@ -37,15 +35,15 @@ export default function Header() {
               className="object-fit rounded-sm"
             />
           </div>
-          <Link href="/" className='text-white tracking-wide'>
+          <Link href="/" className="text-white tracking-wide">
             FicLibrary
           </Link>
         </div>
         <nav className="hidden md:block">
           <ul className="text-gray-300 flex space-x-6 items-center font-normal">
             {routes.map((route, index) => (
-              <li key={index} className='pb-1'>
-                <Link 
+              <li key={index} className="pb-1">
+                <Link
                   className={clsx(
                     `
                       text-sm 
@@ -53,7 +51,7 @@ export default function Header() {
                       transition 
                       duration-300 
                       hover:border-b
-                    `, 
+                    `,
                     route.active && 'border-b'
                   )}
                   href={route.path}
@@ -63,26 +61,37 @@ export default function Header() {
               </li>
             ))}
             <div className="w-4 h-[1px] bg-white" />
-            <li>
-              <Link
-                href="/register"
-                className="text-sm pb-1 transition duration-300 hover:border-b"
-              >
-                Регистрация
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/register"
-                className="text-sm pb-1 transition duration-300 hover:border-b"
-              >
-                Войти
-              </Link>
-            </li>
+            {!currentUser ? (
+              <>
+                <li>
+                  <Link
+                    href="/register"
+                    className="text-sm pb-1 transition duration-300 hover:border-b"
+                  >
+                    Регистрация
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/register"
+                    className="text-sm pb-1 transition duration-300 hover:border-b"
+                  >
+                    Войти
+                  </Link>
+                </li>
+              </>
+            ) : (
+              <>
+                <h5 className="text-xs">
+                  Привет, <span>{currentUser.name}</span>
+                </h5>
+                <p onClick={() => signOut()} className='cursor-pointer'>Выйти</p>
+              </>
+            )}
           </ul>
         </nav>
         <div className="block md:hidden text-gray-200 font-semibold">
-          <MdMenu size={25}/>
+          <MdMenu size={25} />
         </div>
       </header>
     </section>
