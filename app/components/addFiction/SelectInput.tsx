@@ -13,7 +13,6 @@ type SelectVariant = 'group' | 'fandom' | 'character' | 'relation' | 'access'
 interface SelectProps {
   placeholder?: string
   id: SelectVariant
-  ref?: TransitionChildRenderProp
 }
 
 const Select: React.FC<SelectProps> = ({ placeholder, id }) => {
@@ -25,8 +24,8 @@ const Select: React.FC<SelectProps> = ({ placeholder, id }) => {
 
   return (
     <div className="w-full relative z-10" id={id} onClick={() => handleClick(id)}>
-      <Input className='cursor-pointer' placeholder={placeholder}/>
-      <IoIosArrowDown size={23} className={clsx(`absolute top-1/2 -translate-y-1/2 right-3 text-gray-400 cursor-pointer transition-all duration-300 `, 
+      <Input className='cursor-pointer' placeholder={placeholder} readOnly={true}/>
+      <IoIosArrowDown size={23} className={clsx(`absolute top-1/2 -translate-y-1/2 right-3 text-gray-400 cursor-pointer transition-all duration-500 `, 
         isOpen && '-rotate-180'
         )}
       />
