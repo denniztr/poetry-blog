@@ -5,7 +5,12 @@ import { useState } from 'react';
 import Input from '@/app/components/ui/inputs/addFictionInput';
 import Button from '@/app/components/ui/buttons/ficFormButton';
 
+import ratings from '@/app/constants/rating';
+
+import { IoIosArrowDown } from "react-icons/io";
+
 import clsx from 'clsx';
+
 
 type Authorship = 'author' | 'translation'; 
 type FictionType = 'original' | 'fandom';
@@ -15,7 +20,7 @@ type Rating = 'g' | 'pg-13' | 'r' | 'nc-17' | 'nc-21';
 const AddFicForm = () => {
   const [authorship, setAuthorship] = useState<Authorship>('author');
   const [fictionType, setFictionType] = useState<FictionType>('original');
-  const [rating, setRating] = useState<Rating>('g');
+  const [selectedRating, setSelectedRating] = useState<Rating>('g');
 
   const toggleAuthorship = (value: Authorship) => {
     if (value !== authorship) {
@@ -30,24 +35,23 @@ const AddFicForm = () => {
   }
 
   const toggleRating = (value: Rating) => {
-    if (value !== rating) {
-      setRating(value)
+    if (value !== selectedRating) {
+      setSelectedRating(value)
     }
   }
 
-
   return (
     <div className="w-full py-6  md:pr-6 md:pl-24">
-      <form className=" text-white space-y-6">
+      <form className=" text-gray-400 space-y-6">
         <div className="flex gap-6">
           <label>Авторство</label>
           <div className="flex flex-col">
             <label>
-              <input type="radio" name="authorship" value='author' checked={authorship === 'author'} onClick={() => toggleAuthorship('author')} readOnly/>
+              <input className='mr-2' type="radio" name="authorship" value='author' checked={authorship === 'author'} onClick={() => toggleAuthorship('author')} readOnly/>
               Работа Вашего авторства
             </label>
             <label>
-              <input type="radio" name="authorship" value='translation' checked={authorship === 'translation'} onClick={() => toggleAuthorship('translation')} readOnly/>
+              <input className='mr-2' type="radio" name="authorship" value='translation' checked={authorship === 'translation'} onClick={() => toggleAuthorship('translation')} readOnly/>
               Перевод с другого языка (с разрешения автора оригинала)
             </label>
           </div>
@@ -110,17 +114,20 @@ const AddFicForm = () => {
           <>
             <div className="space-y-2">
               <label className='text-sm'>Выберите фандом  <span className='text-red-600'>*</span></label>
-              <div className="w-full">
+              <div className="w-full relative">
                 <Input placeholder='Выберите группу'/>
+                <IoIosArrowDown size={23}  className='absolute top-1/2 -translate-y-1/2 right-3 text-gray-400'/>
               </div>
-              <div className="w-full">
+              <div className="w-full relative">
                 <Input placeholder='Укажите фандом'/>
+                <IoIosArrowDown size={23}  className='absolute top-1/2 -translate-y-1/2 right-3 text-gray-400'/>
               </div>
             </div>
             <div className="space-y-2">
               <label>Персонажи</label>
-              <div className="w-full">
-                <Input placeholder='Выберайте персонажей по одному'/>
+              <div className="w-full relative">
+                <Input placeholder='Выбирайте персонажей по одному'/>
+                <IoIosArrowDown size={23}  className='absolute top-1/2 -translate-y-1/2 right-3 text-gray-400'/>
               </div>
             </div>
           </>
@@ -128,32 +135,19 @@ const AddFicForm = () => {
          <div className="flex gap-6">
           <label className='w-20'>Рейтинг</label>
           <div className="flex flex-col">
-            <label>
-              <input type="radio" name="rating" value='g' checked={rating === 'g'} onClick={() => toggleRating('g')} readOnly/>
-              G
-            </label>
-            <label>
-              <input type="radio" name="rating" value='pg-13' checked={rating === 'pg-13'} onClick={() => toggleRating('pg-13')} readOnly/>
-              PG-13
-            </label>
-            <label>
-              <input type="radio" name="rating" value='r'checked={rating === 'r'} onClick={() => toggleRating('r')} readOnly/>
-              R
-            </label>
-            <label>
-              <input type="radio" name="rating" value='nc-17' checked={rating === 'nc-17'} onClick={() => toggleRating('nc-17')} readOnly/>
-              NC-17
-            </label>
-            <label>
-              <input type="radio" name="rating" value='nc-21' checked={rating === 'nc-21'} onClick={() => toggleRating('nc-21')} readOnly/>
-              NC-21
-            </label>
+            {ratings.map((rating, index) => (
+              <label key={index}>
+                <input type='radio' name='rating' value={rating.label} checked={rating.label === selectedRating} onClick={() => toggleRating(rating.label as Rating)} readOnly/>
+                {rating.label.toUpperCase()}
+              </label>
+            ))}
           </div>
         </div>
         <div className="space-y-2">
           <label>Отношения</label>
-          <div className="w-full">
-            <Input placeholder='Выберите отношения'/>
+          <div className="w-full relative">
+            <Input placeholder='Выберите отношения' />
+            <IoIosArrowDown size={23}  className='absolute top-1/2 -translate-y-1/2 right-3 text-gray-400'/>
           </div>
         </div>
         <div className="space-y-2">
@@ -191,17 +185,18 @@ const AddFicForm = () => {
         </div>
         <div className="space-y-2">
           <label>Разрешение на публикацию</label>
-          <div className="w-full">
+          <div className="w-full relative">
             <Input placeholder='Варианты'/>
+            <IoIosArrowDown size={23}  className='absolute top-1/2 -translate-y-1/2 right-3 text-gray-400'/>
           </div>
           <span className='text-xs text-gray-400'>Разрешение публикации на других ресурсах.</span>
         </div>
         <div className='w-full text-center space-y-6'>
           <div>
-            <input type="checkbox" />
+            <input type="checkbox" className="h-4 w-4"/>
             <span className='pl-2 text-sm text-gray-400'>Я подтверждаю, что публикуемый перевод выполнен мной с иностранного языка, а разрешение на перевод получено у автора, и понимаю, что публикация чужих работ может привести к блокировке доступа на сайт.</span>
           </div>
-          <Button>Сохранить и перейти к публикации</Button>
+          <Button disabled={false}>Сохранить и перейти к публикации</Button>
         </div>
       </form>
     </div>

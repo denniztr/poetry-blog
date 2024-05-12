@@ -26,6 +26,11 @@ const useRoutes = () => {
         path: '/orders',
         active: pathname === '/orders'
       },
+      {
+        label: 'Вики',
+        path: '/wiki',
+        active: pathname === '/wiki'
+      },
     ], [pathname]
   )
 
