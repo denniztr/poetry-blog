@@ -4,6 +4,7 @@ import { useState } from 'react';
 
 import Input from '@/app/components/ui/inputs/addFictionInput';
 import Button from '@/app/components/ui/buttons/ficFormButton';
+import Select from '@/app/components/addFiction/SelectInput';
 
 import ratings from '@/app/constants/rating';
 
@@ -75,7 +76,7 @@ const AddFicForm = () => {
         <div className="space-y-2">
           <label>Название</label>
           <div className="w-full">
-            <Input />
+            <Input placeholder='Название произведения'/>
           </div>
         </div>
         <div className="flex gap-6">
@@ -114,21 +115,12 @@ const AddFicForm = () => {
           <>
             <div className="space-y-2">
               <label className='text-sm'>Выберите фандом  <span className='text-red-600'>*</span></label>
-              <div className="w-full relative">
-                <Input placeholder='Выберите группу'/>
-                <IoIosArrowDown size={23}  className='absolute top-1/2 -translate-y-1/2 right-3 text-gray-400'/>
-              </div>
-              <div className="w-full relative">
-                <Input placeholder='Укажите фандом'/>
-                <IoIosArrowDown size={23}  className='absolute top-1/2 -translate-y-1/2 right-3 text-gray-400'/>
-              </div>
+              <Select placeholder='Выберите группу' id='group'/>
+              <Select placeholder='Укажите фандом' id='fandom'/>
             </div>
             <div className="space-y-2">
               <label>Персонажи</label>
-              <div className="w-full relative">
-                <Input placeholder='Выбирайте персонажей по одному'/>
-                <IoIosArrowDown size={23}  className='absolute top-1/2 -translate-y-1/2 right-3 text-gray-400'/>
-              </div>
+              <Select placeholder='Выберите персонажей по одному' id='character'/>
             </div>
           </>
         )}
@@ -145,10 +137,7 @@ const AddFicForm = () => {
         </div>
         <div className="space-y-2">
           <label>Отношения</label>
-          <div className="w-full relative">
-            <Input placeholder='Выберите отношения' />
-            <IoIosArrowDown size={23}  className='absolute top-1/2 -translate-y-1/2 right-3 text-gray-400'/>
-          </div>
+          <Select placeholder='Выберите отношения' id='relation'/>
         </div>
         <div className="space-y-2">
           <label>Метки</label>
@@ -185,10 +174,7 @@ const AddFicForm = () => {
         </div>
         <div className="space-y-2">
           <label>Разрешение на публикацию</label>
-          <div className="w-full relative">
-            <Input placeholder='Варианты'/>
-            <IoIosArrowDown size={23}  className='absolute top-1/2 -translate-y-1/2 right-3 text-gray-400'/>
-          </div>
+          <Select placeholder='Варианты' id='access'/>
           <span className='text-xs text-gray-400'>Разрешение публикации на других ресурсах.</span>
         </div>
         <div className='w-full text-center space-y-6'>

@@ -5,10 +5,12 @@ import clsx from 'clsx';
 
 interface InputProps {
   placeholder?: string
+  className?: string
 }
 
 const Input: React.FC<InputProps> = ({
   placeholder,
+  className: styles
 }) => {
 
 
@@ -16,7 +18,7 @@ const Input: React.FC<InputProps> = ({
       <input
         placeholder={placeholder}
         className={clsx(
-          'block w-full h-10 rounded-lg border-none bg-white/20 py-1.5 px-3 text-sm/6 text-white',
+          `block w-full h-10 rounded-lg border-none bg-white/20 py-1.5 px-3 text-sm/6 text-white ${styles}`,
           'focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25',
         )}
       />
