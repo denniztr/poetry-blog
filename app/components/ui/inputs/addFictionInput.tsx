@@ -8,7 +8,7 @@ interface InputProps {
 }
 
 const Input: React.FC<InputProps> = ({
-  placeholder
+  placeholder,
 }) => {
 
 
