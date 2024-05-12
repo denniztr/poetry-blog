@@ -44,13 +44,17 @@ const AuthForm: React.FC<AuthFormProps> = ({ setVariant, variant }) => {
 
     if (variant === 'REGISTER') {
       axios.post('/api/register', data)
-      .then((cb) => console.log(cb))
+      .then((cb) => {
+        if (cb.status === 200) {
+          signIn('credentials', data)
+        }
+      })
       .catch((error) => console.log(error))
       .finally(() => setIsLoading(false))
 
     } else if (variant === 'LOGIN') {
       signIn('credentials', {...data, redirect: false})
-      .then((cb) => { console.log(cb) })
+      .then((cb) => { console.log('Успешная авторизация: ' + cb) })
       .catch((error) => console.log(error))
       .finally(() => setIsLoading(false))
     }

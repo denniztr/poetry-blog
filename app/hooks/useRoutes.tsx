@@ -17,14 +17,19 @@ const useRoutes = () => {
         active: pathname === '/authors'
       },
       {
-        label: 'Популярное',
-        path: '/popular',
-        active: pathname === '/popular'
+        label: 'Опубликовать',
+        path: '/add',
+        active: pathname === '/add'
       },
       {
         label: 'Ордеры',
         path: '/orders',
         active: pathname === '/orders'
+      },
+      {
+        label: 'Вики',
+        path: '/wiki',
+        active: pathname === '/wiki'
       },
     ], [pathname]
   )
