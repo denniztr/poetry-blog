@@ -4,7 +4,7 @@ import { FaInfo } from 'react-icons/fa6';
 
 export default function Home() {
   return (
-    <main>
+    <main className='pb-12'>
       <SectionTitle>Добавить фанфик</SectionTitle>
       <section>
         <div

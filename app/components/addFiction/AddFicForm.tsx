@@ -42,7 +42,7 @@ const AddFicForm = () => {
   }
 
   return (
-    <div className="w-full py-6  md:pr-6 md:pl-24">
+    <div className="w-full py-6 md:pr-6 md:pl-24">
       <form className=" text-gray-400 space-y-6">
         <div className="flex gap-6">
           <label>Авторство</label>
