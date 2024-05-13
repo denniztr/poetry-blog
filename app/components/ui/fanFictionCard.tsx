@@ -48,6 +48,9 @@ const FanFictionCard = ({
               </Link>
             </div>
             <ul className='flex gap-1 flex-wrap text-gray-400 text-xs sm:text-sm md:gap-2'>
+            <li>
+                <Link href='/fanfiction' className="p-1 bg-sky-800 rounded-sm">Джен</Link>
+              </li>
               <li>
                 <Link href='/fanfiction' className="p-1 bg-purple-800 rounded-sm">Фемслэш</Link>
               </li>

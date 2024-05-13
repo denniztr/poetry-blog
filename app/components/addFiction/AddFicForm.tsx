@@ -43,7 +43,7 @@ const AddFicForm = () => {
 
   return (
     <div className="w-full py-6 md:pr-6 md:pl-24">
-      <form className=" text-gray-400 space-y-6">
+      <form className=" text-gray-300 space-y-6">
         <div className="flex gap-6">
           <label>Авторство</label>
           <div className="flex flex-col">
@@ -96,11 +96,11 @@ const AddFicForm = () => {
           <label className='w-20'>Тип работы</label>
           <div className="flex flex-col">
             <label>
-              <input type="radio" name="type" value='original' checked={fictionType === 'original'} onClick={() => toggleFictionType('original')} readOnly/>
+              <input className='mr-2' type="radio" name="type" value='original' checked={fictionType === 'original'} onClick={() => toggleFictionType('original')} readOnly/>
               Ориджинал
             </label>
             <label>
-              <input type="radio" name="type" value='fandom' checked={fictionType === 'fandom'} onClick={() => toggleFictionType('fandom')} readOnly/>
+              <input className='mr-2' type="radio" name="type" value='fandom' checked={fictionType === 'fandom'} onClick={() => toggleFictionType('fandom')} readOnly/>
               Фанфик по фандому
             </label>
           </div>
@@ -129,7 +129,7 @@ const AddFicForm = () => {
           <div className="flex flex-col">
             {ratings.map((rating, index) => (
               <label key={index}>
-                <input type='radio' name='rating' value={rating.label} checked={rating.label === selectedRating} onClick={() => toggleRating(rating.label as Rating)} readOnly/>
+                <input className='mr-2' type='radio' name='rating' value={rating.label} checked={rating.label === selectedRating} onClick={() => toggleRating(rating.label as Rating)} readOnly/>
                 {rating.label.toUpperCase()}
               </label>
             ))}

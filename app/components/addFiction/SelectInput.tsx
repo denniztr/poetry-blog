@@ -19,16 +19,17 @@ interface SelectProps {
 
 const Select: React.FC<SelectProps> = ({ placeholder, id }) => {
   const [isOpen, setIsOpen] = useState<SelectVariant | null>(null);
-
+  const [chosenRelation, setChosenRelation] = useState<string>();
+  console.log(chosenRelation)
   const handleClick = (id: SelectVariant) => {
     setIsOpen(isOpen === id ? null : id)
   }
-  console.log(relations)
+
   return (
     <div className="w-full relative" id={id} onClick={() => handleClick(id)}>
       <Input className='cursor-pointer' placeholder={placeholder} readOnly={true} />
-      <IoIosArrowDown size={23} className={clsx(`absolute top-1/2 -translate-y-1/2 right-3 text-gray-400 cursor-pointer transition-all duration-500`, 
-        isOpen && '-rotate-180'
+      <IoIosArrowDown size={23} className={clsx(`absolute top-1/2 -translate-y-1/2 right-3 text-gray-400 cursor-pointer transition-all duration-200`, 
+        isOpen && 'rotate-180'
         )}
       />
       <Transition
@@ -41,18 +42,18 @@ const Select: React.FC<SelectProps> = ({ placeholder, id }) => {
           leaveTo="opacity-0 translate-y-1"
         >
             {(ref) => (
-              <div ref={ref} className={clsx(`absolute bg-gray-400 rounded-b w-full text-black`)}>
+              <div ref={ref} className={clsx(`absolute bg-white/70 rounded-b w-full text-black`)}>
                 <ul className='max-h-[160px] overflow-auto'>
                 {isOpen === 'relation' && (
                   relations.map((relation, index) => (
-                      <li key={index} className='py-2 pl-6 cursor-pointer hover:bg-white/30'>
-                        <span>{relation.label}</span>
+                      <li key={index} className='py-2 pl-6 cursor-pointer transition-all duration-300 hover:bg-white/30' onClick={() => setChosenRelation(relation.label)} >
+                        <span className={relation.style}>{relation.label}</span>
                       </li>
                   ))
                 )}
                 {isOpen === 'access' && (
                   access.map((item, index) => (
-                    <li key={index} className='py-2 pl-6 cursor-pointer hover:bg-white/30'>
+                    <li key={index} className='py-2 pl-6 cursor-pointer transition-all duration-300 hover:bg-white/30'>
                       {item.label}
                     </li>
                   ))
