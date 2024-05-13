@@ -52,6 +52,8 @@ const AddFicForm = () => {
       link: '',
       coAuthor: '',
       type: '',
+      fandom: '',
+      group: '',
       characters: '',
       rating: '',
       relationships: '',
@@ -151,7 +153,7 @@ const AddFicForm = () => {
         {/* <div className={clsx(`space-y-2`, fictionType === 'fandom' && 'hidden')}>
           <label>Персонажи</label>
             <div className="w-full relative">
-              <Input placeholder='Добавляйте персонажей по одному' setChosenCharacter={setChosenCharacter} value={chosenCharacter}/>
+              <Input register={register} placeholder='Добавляйте персонажей по одному' setChosenCharacter={setChosenCharacter} chosenCharacters={chosenCharacters}/>
               {chosenCharacter.length > 0 && (
                 <div className='absolute top-1/2 -translate-y-1/2 right-3  bg-white/50 py-1 px-2 rounded-md transition-all duration-300 hover:bg-white/30'>
                   <button className='flex items-center gap-1 text-white text-xs md:text-sm' onClick={handleChooseCharacterClick}>
@@ -167,21 +169,21 @@ const AddFicForm = () => {
                   <p key={index}>{char}</p>
                 ))
               )}
-            </div>
+            </div> 
         </div> */}
-        {/* {fictionType === 'fandom' && (
+        {fictionType === 'fandom' && (
           <>
             <div className="space-y-2">
               <label className='text-sm'>Выберите фандом  <span className='text-red-600'>*</span></label>
-              <Select placeholder='Выберите группу' id='group' setChosenGroup={setChosenGroup} chosenGroup={chosenGroup} />
-              <Select placeholder='Укажите фандом' id='fandom' setChosenFandom={setChosenFandom} chosenFandom={chosenFandom}/>
+              <Select setValue={setValue} register={register} placeholder='Выберите группу' id='group' setChosenGroup={setChosenGroup} chosenGroup={chosenGroup} />
+              <Select setValue={setValue} register={register} placeholder='Укажите фандом' id='fandom' setChosenFandom={setChosenFandom} chosenFandom={chosenFandom}/>
             </div>
             <div className="space-y-2">
               <label>Персонажи</label>
-              <Select placeholder='Выберите персонажей по одному' id='character' setChosenCharacter={setChosenCharacter} chosenCharacter={chosenCharacter}/>
+              <Select setValue={setValue} register={register} placeholder='Выберите персонажей по одному' id='character' setChosenCharacter={setChosenCharacter} chosenCharacter={chosenCharacter}/>
             </div>
           </>
-        )}  */}
+        )} 
          <div className="flex gap-6">
           <label className='w-20'>Рейтинг</label>
           <div className="flex flex-col">

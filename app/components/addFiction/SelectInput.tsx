@@ -21,12 +21,12 @@ interface SelectProps {
   chosenRelation: string;
   setChosenAccessRules: React.Dispatch<SetStateAction<string>>;
   chosenAccessRules: string;
-  // setChosenGroup: React.Dispatch<SetStateAction<string>>;
-  // chosenGroup: string;
-  // setChosenFandom: React.Dispatch<SetStateAction<string>>;
-  // chosenFandom: string;
-  // setChosenCharacter: React.Dispatch<SetStateAction<string>>;
-  // chosenCharacter: string;
+  setChosenGroup: React.Dispatch<SetStateAction<string>>;
+  chosenGroup: string;
+  setChosenFandom: React.Dispatch<SetStateAction<string>>;
+  chosenFandom: string;
+  setChosenCharacter: React.Dispatch<SetStateAction<string>>;
+  chosenCharacter: string;
   register: UseFormRegister<FieldValues>
   setValue: UseFormSetValue<FieldValues>
 }
@@ -38,6 +38,9 @@ const Select: React.FC<SelectProps> = ({
   chosenRelation,
   setChosenAccessRules,
   chosenAccessRules,
+  chosenGroup,
+  chosenFandom,
+  chosenCharacter,
   register,
   setValue
 }) => {
@@ -56,6 +59,21 @@ const Select: React.FC<SelectProps> = ({
     // Установка значения chosenRelation в register
     setValue(id, chosenAccessRules);
   }, [chosenAccessRules, id, setValue]);
+
+  useEffect(() => {
+    // Установка значения chosenRelation в register
+    setValue(id, chosenGroup);
+  }, [chosenGroup, id, setValue]);
+
+  useEffect(() => {
+    // Установка значения chosenRelation в register
+    setValue(id, chosenCharacter);
+  }, [chosenCharacter, id, setValue]);
+
+  useEffect(() => {
+    // Установка значения chosenRelation в register
+    setValue(id, chosenFandom);
+  }, [chosenFandom, id, setValue]);
 
   return (
     <div className="w-full relative" id={id} onClick={() => handleClick(id)}>

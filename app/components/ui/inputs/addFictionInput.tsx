@@ -1,7 +1,8 @@
 'use client';
 
-import { SetStateAction } from 'react';
-import { FieldErrors, FieldValues, UseFormRegister } from 'react-hook-form';
+
+import { useEffect, SetStateAction } from 'react';
+import { FieldErrors, FieldValues, UseFormRegister, UseFormSetValue } from 'react-hook-form';
 import clsx from 'clsx';
 
 interface InputProps {
@@ -12,6 +13,8 @@ interface InputProps {
   value?: string
   register: UseFormRegister<FieldValues>
   id: string
+  // setValue?: UseFormSetValue<FieldValues>
+  // chosenCharacters: string[]
 }
 
 const Input: React.FC<InputProps> = ({
@@ -21,9 +24,15 @@ const Input: React.FC<InputProps> = ({
   setChosenCharacter,
   value,
   register,
-  id
+  id,
+  // setValue,
+  // chosenCharacters
 }) => {
 
+  // useEffect(() => {
+  //   // Устанавливаем значение chosenCharacters в register
+  //   setValue(id, chosenCharacters); // Установка значения массива с персонажами в register
+  // }, [chosenCharacters, id, setValue]);
 
   return (
       <input
