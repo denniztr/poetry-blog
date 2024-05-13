@@ -49,6 +49,7 @@ const AddFicForm = () => {
     }
   }
 
+  
   const toggleRating = (value: Rating) => {
     if (value !== selectedRating) {
       setSelectedRating(value)
