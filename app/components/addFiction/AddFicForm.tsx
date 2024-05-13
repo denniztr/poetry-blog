@@ -241,6 +241,7 @@ const AddFicForm = () => {
         </div>
         <div className="space-y-2">
           <label>Разрешение на публикацию</label>
+          {/* fix */}
           <Select 
             setValue={setValue}
             placeholder='Варианты' 
