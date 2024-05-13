@@ -20,7 +20,7 @@ interface SelectProps {
 const Select: React.FC<SelectProps> = ({ placeholder, id }) => {
   const [isOpen, setIsOpen] = useState<SelectVariant | null>(null);
   const [chosenRelation, setChosenRelation] = useState<string>();
-  console.log(chosenRelation)
+
   const handleClick = (id: SelectVariant) => {
     setIsOpen(isOpen === id ? null : id)
   }

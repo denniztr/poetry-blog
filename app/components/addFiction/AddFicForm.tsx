@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import Input from '@/app/components/ui/inputs/addFictionInput';
 import Button from '@/app/components/ui/buttons/ficFormButton';
@@ -9,6 +9,7 @@ import Select from '@/app/components/addFiction/SelectInput';
 import ratings from '@/app/constants/rating';
 
 import { IoIosArrowDown } from "react-icons/io";
+import { FaPlus } from "react-icons/fa";
 
 import clsx from 'clsx';
 
@@ -22,6 +23,19 @@ const AddFicForm = () => {
   const [authorship, setAuthorship] = useState<Authorship>('author');
   const [fictionType, setFictionType] = useState<FictionType>('original');
   const [selectedRating, setSelectedRating] = useState<Rating>('g');
+
+  const [chosenCharacter, setChosenCharacter] = useState<string>('');
+  const [chosenCharacters, setChosenCharacters] = useState<string[]>([]);
+
+
+  const handleChooseCharacterClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    event.preventDefault()
+    if (chosenCharacter.trim().length > 0) {
+      setChosenCharacters(prevCharacters => [...prevCharacters, chosenCharacter.trim()]);
+      setChosenCharacter('');
+    }
+  }
+
 
   const toggleAuthorship = (value: Authorship) => {
     if (value !== authorship) {
@@ -107,8 +121,23 @@ const AddFicForm = () => {
         </div>
         <div className={clsx(`space-y-2`, fictionType === 'fandom' && 'hidden')}>
           <label>Персонажи</label>
-            <div className="w-full">
-              <Input placeholder='Вводите персонажей через пробел'/>
+            <div className="w-full relative">
+              <Input placeholder='Добавляйте персонажей по одному' setChosenCharacter={setChosenCharacter} value={chosenCharacter}/>
+              {chosenCharacter.length > 0 && (
+                <div className='absolute top-1/2 -translate-y-1/2 right-3  bg-white/50 py-1 px-2 rounded-md transition-all duration-300 hover:bg-white/30'>
+                  <button className='flex items-center gap-1 text-white text-xs md:text-sm' onClick={handleChooseCharacterClick}>
+                    <FaPlus />
+                    Добавить
+                  </button>
+                </div>
+              )}
+            </div>
+            <div className='flex space-x-3'>
+              {chosenCharacters && chosenCharacters.length > 0 && (
+                chosenCharacters.map((char, index) => (
+                  <p key={index}>{char}</p>
+                ))
+              )}
             </div>
         </div>
         {fictionType === 'fandom' && (
