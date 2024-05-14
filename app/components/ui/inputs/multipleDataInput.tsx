@@ -46,8 +46,9 @@ const MultipleDataInput: React.FC<MultipleDataInputProps> = ({
       setChosenTag('');
     } else if (id === 'collaborators' && chosenCollaborator.trim().length > 0) {
       setChosenCollaborators((prevCollaborator) => [...prevCollaborator, chosenCollaborator.trim()])
-      setChosenCollaborator('')
+      setChosenCollaborator('');
     }
+
   };
 
   return (
@@ -65,6 +66,7 @@ const MultipleDataInput: React.FC<MultipleDataInputProps> = ({
           }}
           placeholder={placeholder}
           type="text"
+          value={id === 'characters' ? chosenCharacter : id === 'tags' ? chosenTag : chosenCollaborator}
           className={clsx(
             `block w-full h-10 rounded-lg border-none bg-white/20 py-1.5 px-3 text-sm/6 text-white`,
             `focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25`
