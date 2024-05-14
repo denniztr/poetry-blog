@@ -72,7 +72,7 @@ const AddFicForm = () => {
   };
 
   return (
-    <div className="w-full py-6 md:pr-6 md:pl-24">
+    <div className="w-full py-6 md:pr-6 md:pl-24 z-40">
       <form
         className=" text-gray-300 space-y-6"
         onSubmit={handleSubmit(onSubmit)}

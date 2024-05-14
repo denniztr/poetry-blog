@@ -59,7 +59,7 @@ const SelectInput: React.FC<SelectInputProps> = ({
         />
       </div>
       {isOpen && (
-        <ul className="absolute bg-white/70 rounded-b w-full text-black">
+        <ul className="absolute bg-white/60 rounded-b w-full text-black z-50">
           {isOpen === 'access' &&
             access.map((item, index) => (
               <li
