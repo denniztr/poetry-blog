@@ -3,6 +3,10 @@
 import { useState, useEffect } from 'react';
 import { useForm, FieldValues, SubmitHandler } from 'react-hook-form';
 
+import TextInput from '@/app/components/ui/inputs/textInput';
+import Textarea from '@/app/components/ui/inputs/textarea';
+import RadioInput from '@/app/components/ui/inputs/radioInput';
+
 import Input from '@/app/components/ui/inputs/addFictionInput';
 import Button from '@/app/components/ui/buttons/ficFormButton';
 import Select from '@/app/components/addFiction/SelectInput';
@@ -30,6 +34,9 @@ const AddFicForm = () => {
   const [chosenAccessRules, setChosenAccessRules] = useState<string>('');
   const [chosenGroup, setChosenGroup] = useState<string>('');
   const [chosenFandom, setChosenFandom] = useState<string>('');
+  const [chosenTag, setChosenTag] = useState<string>('');
+  const [chosenTags, setChosenTags] = useState<string[]>([]);
+
 
   const handleChooseCharacterClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     event.preventDefault()
@@ -38,6 +45,15 @@ const AddFicForm = () => {
       setChosenCharacter('');
     }
   }
+
+  const handleChooseTagClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    event.preventDefault()
+    if (chosenTag.trim().length > 0) {
+      setChosenTags(prevTag => [...prevTag, chosenTag.trim()]);
+      setChosenTag('');
+    }
+  }
+
 
   const {
     register,
@@ -68,20 +84,13 @@ const AddFicForm = () => {
     console.log(values)
   }
 
-  const toggleAuthorship = (value: Authorship) => {
-    if (value !== authorship) {
-      setAuthorship(value);
-    }
-  };
 
-  const toggleFictionType = (value: FictionType) => {
-    if (value !== fictionType) {
-      setFictionType(value);
-    }
-  }
-
-  const toggleRating = (value: Rating) => {
-    if (value !== selectedRating) {
+  const toggleRadioButton = (value: Authorship | FictionType | Rating, name: string) => {
+    if (name === 'authorship') {
+      setAuthorship(value)
+    } else if (name === 'type') {
+      setFictionType(value)
+    } else if (name === 'rating') {
       setSelectedRating(value)
     }
   }
@@ -92,14 +101,26 @@ const AddFicForm = () => {
         <div className="flex gap-6">
           <label>Авторство</label>
           <div className="flex flex-col">
-            <label>
-              <input {...register('authorship')} className='mr-2' type="radio" name="authorship" value='author' checked={authorship === 'author'} onClick={() => toggleAuthorship('author')} readOnly/>
+            <RadioInput 
+              register={register} 
+              name="authorship" 
+              value='author'
+              checked={authorship === 'author'}
+              handleClick={toggleRadioButton} 
+              readOnly
+            >
               Работа Вашего авторства
-            </label>
-            <label>
-              <input {...register('authorship')} className='mr-2' type="radio" name="authorship" value='translation' checked={authorship === 'translation'} onClick={() => toggleAuthorship('translation')} readOnly/>
+            </RadioInput>
+            <RadioInput 
+              register={register} 
+              name="authorship" 
+              value='translation'
+              checked={authorship === 'translation'}
+              handleClick={toggleRadioButton} 
+              readOnly
+            >
               Перевод с другого языка (с разрешения автора оригинала)
-            </label>
+            </RadioInput>
           </div>
         </div>
         {authorship !== 'author' && (
@@ -107,13 +128,13 @@ const AddFicForm = () => {
             <div className="space-y-2">
               <label>Имя автора <span className='text-red-600'>*</span></label>
               <div className="w-full">
-                <Input placeholder='Имя автора оригинала' register={register} id='author' />
+                <TextInput placeholder='Имя автора оригинала' register={register} id='author' />
               </div>
               </div>
               <div className="space-y-2">
                 <label className='text-sm'>Ссылка на оригинал  <span className='text-red-600'>*</span></label>
                 <div className="w-full">
-                  <Input placeholder='https://ссылка' register={register} id='link' />
+                  <TextInput placeholder='https://ссылка' register={register} id='link' />
                 </div>
               </div>
           </>
@@ -121,7 +142,7 @@ const AddFicForm = () => {
         <div className="space-y-2">
           <label>Название</label>
           <div className="w-full">
-            <Input placeholder='Название произведения' register={register} id='title' />
+            <TextInput placeholder='Название произведения' register={register} id='title' />
           </div>
         </div>
         <div className="flex gap-6">
@@ -140,14 +161,26 @@ const AddFicForm = () => {
         <div className="flex gap-6">
           <label className='w-20'>Тип работы</label>
           <div className="flex flex-col">
-            <label>
-              <input className='mr-2' {...register('type')}type="radio" name="type" value='original' checked={fictionType === 'original'} onClick={() => toggleFictionType('original')} readOnly/>
-              Ориджинал
-            </label>
-            <label>
-              <input className='mr-2' {...register('type')} type="radio" name="type" value='fandom' checked={fictionType === 'fandom'} onClick={() => toggleFictionType('fandom')} readOnly/>
-              Фанфик по фандому
-            </label>
+            <RadioInput 
+                register={register} 
+                name="type" 
+                value='original'
+                checked={fictionType === 'original'}
+                handleClick={toggleRadioButton} 
+                readOnly
+              >
+                Ориджинал
+              </RadioInput>
+              <RadioInput 
+                register={register} 
+                name="type" 
+                value='fandom'
+                checked={fictionType === 'fandom'}
+                handleClick={toggleRadioButton} 
+                readOnly
+              >
+                Фанфик по фандому
+              </RadioInput>
           </div>
         </div>
         {/* <div className={clsx(`space-y-2`, fictionType === 'fandom' && 'hidden')}>
@@ -188,10 +221,21 @@ const AddFicForm = () => {
           <label className='w-20'>Рейтинг</label>
           <div className="flex flex-col">
             {ratings.map((rating, index) => (
-              <label key={index}>
-                <input className='mr-2' {...register('rating')} type='radio' name='rating' value={rating.label} checked={rating.label === selectedRating} onClick={() => toggleRating(rating.label as Rating)} readOnly/>
+              <RadioInput 
+                key={index} 
+                register={register}
+                name="rating" 
+                value={rating.label}
+                checked={rating.label === selectedRating}
+                handleClick={toggleRadioButton} 
+                readOnly
+              >
                 {rating.label.toUpperCase()}
-              </label>
+              </RadioInput>
+              // <label key={index}>
+              //   <input className='mr-2' {...register('rating')} type='radio' name='rating' value={rating.label} checked={rating.label === selectedRating} onClick={() => toggleRating(rating.label as Rating)} readOnly/>
+              //   {rating.label.toUpperCase()}
+              // </label>
             ))}
           </div>
         </div>
@@ -206,24 +250,27 @@ const AddFicForm = () => {
             chosenRelation={chosenRelation} 
           />
         </div> 
-        {/* <div className="space-y-2">
+        <div className="space-y-2">
           <label>Метки</label>
-          <div className="w-full">
-            <Input placeholder='Начните вводить...' register={register} id='tags'/>
+          <div className="w-full relative">
+            <Input placeholder='Начните вводить...' register={register} id='tags' chosenTag={chosenTags} setChosenTags={setChosenTags} />
+            <div className='absolute top-1/2 -translate-y-1/2 right-3  bg-white/50 py-1 px-2 rounded-md transition-all duration-300 hover:bg-white/30'>
+                  <button className='flex items-center gap-1 text-white text-xs md:text-sm'>
+                    <FaPlus />
+                    Добавить
+                  </button>
+                </div>
           </div>
           <span className='text-xs text-gray-400'>Ключевые слова, которые характеризуют происходящее в работе.</span>
-        </div> */}
+        </div>
         <div className="space-y-2">
           <label>Короткое описание работы</label>
           <div className="w-full">
-            <div className=''>
-              <textarea 
-              {...register('description')} 
-                className={clsx(
-                  'block min-h-[200px] w-full h-10 rounded-lg border-none bg-white/20 py-1.5 px-3 text-sm/6 text-white',
-                  'focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25',
-                )}
-              ></textarea>
+            <div>
+              <Textarea 
+                register={register}
+                id='description'
+              />
             </div>
           </div>
         </div>
@@ -231,13 +278,10 @@ const AddFicForm = () => {
           <label>Примечания</label>
           <div className="w-full">
             <div>
-              <textarea 
-                {...register('notes')} 
-                className={clsx(
-                  'block min-h-[200px] w-full h-10 rounded-lg border-none bg-white/20 py-1.5 px-3 text-sm/6 text-white',
-                  'focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25',
-                )}
-              ></textarea>
+              <Textarea 
+                register={register}
+                id='notes'
+              />
             </div>
           </div>
         </div>

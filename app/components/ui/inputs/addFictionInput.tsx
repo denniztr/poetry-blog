@@ -13,6 +13,7 @@ interface InputProps {
   value?: string
   register: UseFormRegister<FieldValues>
   id: string
+  setChosenTags: React.Dispatch<SetStateAction<string>>
   // setValue?: UseFormSetValue<FieldValues>
   // chosenCharacters: string[]
 }
@@ -25,6 +26,7 @@ const Input: React.FC<InputProps> = ({
   value,
   register,
   id,
+  setChosenTags
   // setValue,
   // chosenCharacters
 }) => {

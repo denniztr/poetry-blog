@@ -20,7 +20,7 @@ export default function Home() {
             rounded-xl 
             md:flex-row 
             md:justify-between 
-            md:gap-0 
+            md:gap-0
           "
         >
           <p className="leading-5">

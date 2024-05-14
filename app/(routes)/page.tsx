@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <main className="text-white relative z-10">
       <section className="h-[680px] relative">
-        <div className="absolute inset-0 bg-[url('/bgImage4.png')] bg-no-repeat bg-cover bg-center opacity-45" />
+        <div className="absolute inset-0 bg-[url('/bgImage4.png')] bg-no-repeat bg-cover bg-center opacity-45"/>
         <section className="relative z-20 h-full text-white top-20 flex items-center justify-center px-4">
           <SearchQuery
             className="
