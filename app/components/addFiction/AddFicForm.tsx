@@ -1,19 +1,17 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useForm, FieldValues, SubmitHandler } from 'react-hook-form';
 
 import TextInput from '@/app/components/ui/inputs/textInput';
 import Textarea from '@/app/components/ui/inputs/textarea';
 import RadioInput from '@/app/components/ui/inputs/radioInput';
+import SelectInput from '@/app/components/ui/inputs/selectInput';
+import MultipleDataInput from '@/app/components/ui/inputs/multipleDataInput';
 
-import Input from '@/app/components/ui/inputs/addFictionInput';
 import Button from '@/app/components/ui/buttons/ficFormButton';
-import Select from '@/app/components/addFiction/SelectInput';
 
 import ratings from '@/app/constants/rating';
-
-import { FaPlus } from "react-icons/fa";
 
 import clsx from 'clsx';
 
@@ -29,32 +27,12 @@ const AddFicForm = () => {
   const [selectedRating, setSelectedRating] = useState<Rating>('g');
 
   const [chosenCharacter, setChosenCharacter] = useState<string>('');
-  const [chosenCharacters, setChosenCharacters] = useState<string[]>([]);
   const [chosenRelation, setChosenRelation] = useState<string>('');
   const [chosenAccessRules, setChosenAccessRules] = useState<string>('');
   const [chosenGroup, setChosenGroup] = useState<string>('');
   const [chosenFandom, setChosenFandom] = useState<string>('');
-  const [chosenTag, setChosenTag] = useState<string>('');
-  const [chosenTags, setChosenTags] = useState<string[]>([]);
 
-
-  const handleChooseCharacterClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    event.preventDefault()
-    if (chosenCharacter.trim().length > 0) {
-      setChosenCharacters(prevCharacters => [...prevCharacters, chosenCharacter.trim()]);
-      setChosenCharacter('');
-    }
-  }
-
-  const handleChooseTagClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    event.preventDefault()
-    if (chosenTag.trim().length > 0) {
-      setChosenTags(prevTag => [...prevTag, chosenTag.trim()]);
-      setChosenTag('');
-    }
-  }
-
-
+  
   const {
     register,
     handleSubmit,
@@ -66,14 +44,14 @@ const AddFicForm = () => {
       title: '',
       author: '',
       link: '',
-      coAuthor: '',
+      collaborators: [],
       type: '',
       fandom: '',
       group: '',
-      characters: '',
+      characters: [],
       rating: '',
       relationships: '',
-      tags: '',
+      tags: [],
       description: '',
       notes: '',
       access: '',
@@ -154,7 +132,11 @@ const AddFicForm = () => {
               <Button>Гамму</Button>
             </div>
             <div>
-              <Input placeholder='Начните вводить имя' register={register} id='coAuthor'/>
+              <MultipleDataInput 
+                placeholder='Начните вводить имя' 
+                id='collaborators'
+                setValue={setValue}
+              />
             </div>
           </div>
         </div>
@@ -183,37 +165,45 @@ const AddFicForm = () => {
               </RadioInput>
           </div>
         </div>
-        {/* <div className={clsx(`space-y-2`, fictionType === 'fandom' && 'hidden')}>
+        <div className={clsx(`space-y-2`, fictionType === 'fandom' && 'hidden')}>
           <label>Персонажи</label>
-            <div className="w-full relative">
-              <Input register={register} placeholder='Добавляйте персонажей по одному' setChosenCharacter={setChosenCharacter} chosenCharacters={chosenCharacters}/>
-              {chosenCharacter.length > 0 && (
-                <div className='absolute top-1/2 -translate-y-1/2 right-3  bg-white/50 py-1 px-2 rounded-md transition-all duration-300 hover:bg-white/30'>
-                  <button className='flex items-center gap-1 text-white text-xs md:text-sm' onClick={handleChooseCharacterClick}>
-                    <FaPlus />
-                    Добавить
-                  </button>
-                </div>
-              )}
-            </div>
-            <div className='flex space-x-3'>
-              {chosenCharacters && chosenCharacters.length > 0 && (
-                chosenCharacters.map((char, index) => (
-                  <p key={index}>{char}</p>
-                ))
-              )}
-            </div> 
-        </div> */}
+          <MultipleDataInput 
+            placeholder='Добавляйте персонажей по одному' 
+            id='characters'
+            setValue={setValue}
+          />
+        </div>
         {fictionType === 'fandom' && (
           <>
             <div className="space-y-2">
               <label className='text-sm'>Выберите фандом  <span className='text-red-600'>*</span></label>
-              <Select setValue={setValue} register={register} placeholder='Выберите группу' id='group' setChosenGroup={setChosenGroup} chosenGroup={chosenGroup} />
-              <Select setValue={setValue} register={register} placeholder='Укажите фандом' id='fandom' setChosenFandom={setChosenFandom} chosenFandom={chosenFandom}/>
+              <SelectInput 
+                placeholder='Выберите группу'
+                setValue={setValue}
+                register={register}
+                id='group'
+                state={chosenGroup}
+                dispatch={setChosenGroup}
+              />
+              <SelectInput 
+                placeholder='Укажите фандом'
+                setValue={setValue}
+                register={register}
+                id='fandom'
+                state={chosenFandom}
+                dispatch={setChosenFandom}
+              />
             </div>
             <div className="space-y-2">
               <label>Персонажи</label>
-              <Select setValue={setValue} register={register} placeholder='Выберите персонажей по одному' id='character' setChosenCharacter={setChosenCharacter} chosenCharacter={chosenCharacter}/>
+              <SelectInput 
+                placeholder='Добавляйте персонажей по одному'
+                setValue={setValue}
+                register={register}
+                id='character'
+                state={chosenCharacter}
+                dispatch={setChosenCharacter}
+              />
             </div>
           </>
         )} 
@@ -232,36 +222,27 @@ const AddFicForm = () => {
               >
                 {rating.label.toUpperCase()}
               </RadioInput>
-              // <label key={index}>
-              //   <input className='mr-2' {...register('rating')} type='radio' name='rating' value={rating.label} checked={rating.label === selectedRating} onClick={() => toggleRating(rating.label as Rating)} readOnly/>
-              //   {rating.label.toUpperCase()}
-              // </label>
             ))}
           </div>
         </div>
         <div className="space-y-2">
           <label>Отношения</label>
-          <Select 
+          <SelectInput 
             setValue={setValue}
             placeholder='Выберите отношения' 
             id='relation' 
             register={register}
-            setChosenRelation={setChosenRelation} 
-            chosenRelation={chosenRelation} 
+            state={chosenRelation} 
+            dispatch={setChosenRelation} 
           />
         </div> 
         <div className="space-y-2">
           <label>Метки</label>
-          <div className="w-full relative">
-            <Input placeholder='Начните вводить...' register={register} id='tags' chosenTag={chosenTags} setChosenTags={setChosenTags} />
-            <div className='absolute top-1/2 -translate-y-1/2 right-3  bg-white/50 py-1 px-2 rounded-md transition-all duration-300 hover:bg-white/30'>
-                  <button className='flex items-center gap-1 text-white text-xs md:text-sm'>
-                    <FaPlus />
-                    Добавить
-                  </button>
-                </div>
-          </div>
-          <span className='text-xs text-gray-400'>Ключевые слова, которые характеризуют происходящее в работе.</span>
+          <MultipleDataInput 
+            placeholder='Начните вводить...' 
+            id='tags'
+            setValue={setValue}
+          />
         </div>
         <div className="space-y-2">
           <label>Короткое описание работы</label>
@@ -287,14 +268,13 @@ const AddFicForm = () => {
         </div>
         <div className="space-y-2">
           <label>Разрешение на публикацию</label>
-          {/* fix */}
-          <Select 
+          <SelectInput 
+            placeholder='Варианты'
             setValue={setValue}
-            placeholder='Варианты' 
-            id='access' 
             register={register}
-            setChosenAccessRules={setChosenAccessRules} 
-            chosenAccessRules={chosenAccessRules} 
+            id='access'
+            state={chosenAccessRules}
+            dispatch={setChosenAccessRules}
           />
           <span className='text-xs text-gray-400'>Разрешение публикации на других ресурсах.</span>
         </div> 
