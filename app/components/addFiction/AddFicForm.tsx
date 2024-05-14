@@ -8,7 +8,6 @@ import Textarea from '@/app/components/ui/inputs/textarea';
 import RadioInput from '@/app/components/ui/inputs/radioInput';
 import SelectInput from '@/app/components/ui/inputs/selectInput';
 import MultipleDataInput from '@/app/components/ui/inputs/multipleDataInput';
-
 import Button from '@/app/components/ui/buttons/ficFormButton';
 
 import ratings from '@/app/constants/rating';
@@ -65,11 +64,11 @@ const AddFicForm = () => {
 
   const toggleRadioButton = (value: Authorship | FictionType | Rating, name: string) => {
     if (name === 'authorship') {
-      setAuthorship(value)
+      setAuthorship(value as Authorship)
     } else if (name === 'type') {
-      setFictionType(value)
+      setFictionType(value as FictionType)
     } else if (name === 'rating') {
-      setSelectedRating(value)
+      setSelectedRating(value as Rating)
     }
   }
 

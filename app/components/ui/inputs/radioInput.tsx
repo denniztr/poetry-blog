@@ -14,7 +14,7 @@ interface RadioInputProps {
   value: string;
   readOnly?: boolean;
   checked: boolean;
-  handleClick: () => any;
+  handleClick: (value: Authorship | FictionType | Rating, name: string) => void;
 }
 
 const RadioInput: React.FC<RadioInputProps> = ({
@@ -36,7 +36,7 @@ const RadioInput: React.FC<RadioInputProps> = ({
         value={value}
         readOnly={readOnly}
         checked={checked}
-        onClick={() => handleClick(value, name)}
+        onClick={() => handleClick(value as Authorship | FictionType | Rating, name)}
       />
       {children}
     </label>
