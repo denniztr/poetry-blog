@@ -4,7 +4,7 @@ import { FaInfo } from 'react-icons/fa6';
 
 export default function Home() {
   return (
-    <main>
+    <main className='pb-12'>
       <SectionTitle>Добавить фанфик</SectionTitle>
       <section>
         <div
@@ -20,7 +20,7 @@ export default function Home() {
             rounded-xl 
             md:flex-row 
             md:justify-between 
-            md:gap-0 
+            md:gap-0
           "
         >
           <p className="leading-5">
