@@ -44,6 +44,7 @@ const AddFicForm = ({ currentUser }: { currentUser: User }) => {
       authorship: '',
       title: '',
       // author: '',
+      originalAuthor: '',
       link: '',
       // collaborators: [],
       type: '',
@@ -124,7 +125,7 @@ const AddFicForm = ({ currentUser }: { currentUser: User }) => {
                 <TextInput
                   placeholder="Имя автора оригинала"
                   register={register}
-                  id="author"
+                  id="originalAuthor"
                 />
               </div>
             </div>
