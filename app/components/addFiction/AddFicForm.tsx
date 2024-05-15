@@ -1,8 +1,9 @@
 'use client';
 
-
 import { useState } from 'react';
 import { useForm, FieldValues, SubmitHandler } from 'react-hook-form';
+
+import { useRouter } from 'next/navigation';
 
 import TextInput from '@/app/components/ui/inputs/textInput';
 import Textarea from '@/app/components/ui/inputs/textarea';
@@ -21,6 +22,8 @@ type FictionType = 'original' | 'fandom';
 type Rating = 'g' | 'pg-13' | 'r' | 'nc-17' | 'nc-21';
 
 const AddFicForm = () => {
+  const router = useRouter();
+
   const [authorship, setAuthorship] = useState<Authorship>('author');
   const [fictionType, setFictionType] = useState<FictionType>('original');
   const [selectedRating, setSelectedRating] = useState<Rating>('g');
@@ -64,6 +67,9 @@ const AddFicForm = () => {
       axios.post('/api/fiction/add', values)
       .then((cb) => {
         console.log('the data has been sent: ', cb)
+        if (cb?.status === 201) {
+          router.push(`/fanfiction/add/${cb.data.id}`)
+        }
       })
       .catch((error) => console.log('error: ', error))
 
