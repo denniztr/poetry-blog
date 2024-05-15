@@ -1,12 +1,9 @@
-import getCurrentUser from '@/app/actions/getCurrentUser';
-
 import SectionTitle from '@/app/components/SectionTitle';
 import AddFicForm from '@/app/components/addFiction/AddFicForm';
 import { FaInfo } from 'react-icons/fa6';
 
 
 export default async function Home() {
-  const currentUser = await getCurrentUser();
 
   return (
     <main className='pb-12'>
@@ -38,7 +35,7 @@ export default async function Home() {
             <button className="underline">Ознакомиться с правилами</button>
           </div>
         </div>
-        <AddFicForm currentUser={currentUser} />
+        <AddFicForm />
       </section>
     </main>
   );
