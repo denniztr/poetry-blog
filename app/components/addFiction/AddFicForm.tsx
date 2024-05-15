@@ -1,5 +1,7 @@
 'use client';
 
+import { User } from '@prisma/client';
+
 import { useState } from 'react';
 import { useForm, FieldValues, SubmitHandler } from 'react-hook-form';
 
@@ -19,7 +21,7 @@ type Authorship = 'author' | 'translation';
 type FictionType = 'original' | 'fandom';
 type Rating = 'g' | 'pg-13' | 'r' | 'nc-17' | 'nc-21';
 
-const AddFicForm = ({ currentUser }: { currentUser: any}) => {
+const AddFicForm = ({ currentUser }: { currentUser: User }) => {
   const [authorship, setAuthorship] = useState<Authorship>('author');
   const [fictionType, setFictionType] = useState<FictionType>('original');
   const [selectedRating, setSelectedRating] = useState<Rating>('g');
@@ -41,7 +43,7 @@ const AddFicForm = ({ currentUser }: { currentUser: any}) => {
     defaultValues: {
       authorship: '',
       title: '',
-      author: currentUser.id,
+      // author: '',
       link: '',
       // collaborators: [],
       type: '',

@@ -1,12 +1,14 @@
 import prisma from '@/app/libs/prismadb';
-import { NextResponse } from "next/server";
+import { NextResponse } from 'next/server';
+import getCurrentUser from '@/app/actions/getCurrentUser';
 
 export async function POST(request: Request) {
+  const currentUser = await getCurrentUser();
+
   try {
     const body = await request.json();
     const {
       access,
-      author,
       authorship,
       characters,
       description,
@@ -18,14 +20,22 @@ export async function POST(request: Request) {
       relationships,
       tags,
       title,
-      type
+      type,
     } = body;
+
+    if (!currentUser?.id || !currentUser?.email) {
+      return new NextResponse('Unauthorized', { status: 401 });
+    }
 
     const publication = await prisma.publication.create({
       data: {
         title,
         authorship,
-        author,
+        user: {
+          connect: {
+            id: currentUser.id,
+          },
+        },
         link,
         type,
         fandom,
@@ -36,14 +46,13 @@ export async function POST(request: Request) {
         tags,
         description,
         notes,
-        access
-      }
+        access,
+      },
     });
-
 
     return NextResponse.json(publication, { status: 201 });
   } catch (error) {
+    console.log(error + 'POSTFICTION_ERROR');
     return new NextResponse('Internal Server Error', { status: 500 });
   }
-
 }
