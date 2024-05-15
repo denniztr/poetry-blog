@@ -18,8 +18,8 @@ const useRoutes = () => {
       },
       {
         label: 'Опубликовать',
-        path: '/add',
-        active: pathname === '/add'
+        path: '/fanfiction/add',
+        active: pathname.startsWith('/fanfiction/add')
       },
       {
         label: 'Ордеры',

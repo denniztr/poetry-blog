@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import { useForm, FieldValues, SubmitHandler } from 'react-hook-form';
 
+import { useRouter } from 'next/navigation';
+
 import TextInput from '@/app/components/ui/inputs/textInput';
 import Textarea from '@/app/components/ui/inputs/textarea';
 import RadioInput from '@/app/components/ui/inputs/radioInput';
@@ -12,6 +14,7 @@ import Button from '@/app/components/ui/buttons/ficFormButton';
 
 import ratings from '@/app/constants/rating';
 
+import axios from 'axios';
 import clsx from 'clsx';
 
 type Authorship = 'author' | 'translation';
@@ -19,6 +22,8 @@ type FictionType = 'original' | 'fandom';
 type Rating = 'g' | 'pg-13' | 'r' | 'nc-17' | 'nc-21';
 
 const AddFicForm = () => {
+  const router = useRouter();
+
   const [authorship, setAuthorship] = useState<Authorship>('author');
   const [fictionType, setFictionType] = useState<FictionType>('original');
   const [selectedRating, setSelectedRating] = useState<Rating>('g');
@@ -29,6 +34,7 @@ const AddFicForm = () => {
   const [chosenGroup, setChosenGroup] = useState<string>('');
   const [chosenFandom, setChosenFandom] = useState<string>('');
 
+
   const {
     register,
     handleSubmit,
@@ -38,9 +44,10 @@ const AddFicForm = () => {
     defaultValues: {
       authorship: '',
       title: '',
-      author: '',
+      // author: '',
+      originalAuthor: '',
       link: '',
-      collaborators: [],
+      // collaborators: [],
       type: '',
       fandom: '',
       group: '',
@@ -55,7 +62,17 @@ const AddFicForm = () => {
   });
 
   const onSubmit: SubmitHandler<FieldValues> = (values) => {
-    console.log(values);
+    console.log('onSubmit: ', values)
+
+      axios.post('/api/fiction/add', values)
+      .then((cb) => {
+        console.log('the data has been sent: ', cb)
+        if (cb?.status === 201) {
+          router.push(`/fanfiction/add/${cb.data.id}`)
+        }
+      })
+      .catch((error) => console.log('error: ', error))
+
   };
 
   const toggleRadioButton = (
@@ -112,7 +129,7 @@ const AddFicForm = () => {
                 <TextInput
                   placeholder="Имя автора оригинала"
                   register={register}
-                  id="author"
+                  id="originalAuthor"
                 />
               </div>
             </div>
@@ -148,13 +165,13 @@ const AddFicForm = () => {
               <Button>Бетту</Button>
               <Button>Гамму</Button>
             </div>
-            <div>
+            {/* <div>
               <MultipleDataInput
                 placeholder="Начните вводить имя"
                 id="collaborators"
                 setValue={setValue}
               />
-            </div>
+            </div> */}
           </div>
         </div>
         <div className="flex gap-6">
