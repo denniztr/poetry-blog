@@ -28,6 +28,7 @@ export async function POST(request: Request) {
       return new NextResponse('Unauthorized', { status: 401 });
     }
 
+    
     const publication = await prisma.publication.create({
       data: {
         title,
