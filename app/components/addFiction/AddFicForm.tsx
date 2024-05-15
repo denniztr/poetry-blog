@@ -12,13 +12,14 @@ import Button from '@/app/components/ui/buttons/ficFormButton';
 
 import ratings from '@/app/constants/rating';
 
+import axios from 'axios';
 import clsx from 'clsx';
 
 type Authorship = 'author' | 'translation';
 type FictionType = 'original' | 'fandom';
 type Rating = 'g' | 'pg-13' | 'r' | 'nc-17' | 'nc-21';
 
-const AddFicForm = () => {
+const AddFicForm = ({ currentUser }: { currentUser: any}) => {
   const [authorship, setAuthorship] = useState<Authorship>('author');
   const [fictionType, setFictionType] = useState<FictionType>('original');
   const [selectedRating, setSelectedRating] = useState<Rating>('g');
@@ -29,6 +30,8 @@ const AddFicForm = () => {
   const [chosenGroup, setChosenGroup] = useState<string>('');
   const [chosenFandom, setChosenFandom] = useState<string>('');
 
+  // console.log(currentUser)
+
   const {
     register,
     handleSubmit,
@@ -38,9 +41,9 @@ const AddFicForm = () => {
     defaultValues: {
       authorship: '',
       title: '',
-      author: '',
+      author: currentUser.id,
       link: '',
-      collaborators: [],
+      // collaborators: [],
       type: '',
       fandom: '',
       group: '',
@@ -55,7 +58,14 @@ const AddFicForm = () => {
   });
 
   const onSubmit: SubmitHandler<FieldValues> = (values) => {
-    console.log(values);
+    console.log('onSubmit: ', values)
+
+      axios.post('/api/fiction/add', values)
+      .then((cb) => {
+        console.log('the data has been sent: ', cb)
+      })
+      .catch((error) => console.log('error: ', error))
+
   };
 
   const toggleRadioButton = (
@@ -148,13 +158,13 @@ const AddFicForm = () => {
               <Button>Бетту</Button>
               <Button>Гамму</Button>
             </div>
-            <div>
+            {/* <div>
               <MultipleDataInput
                 placeholder="Начните вводить имя"
                 id="collaborators"
                 setValue={setValue}
               />
-            </div>
+            </div> */}
           </div>
         </div>
         <div className="flex gap-6">

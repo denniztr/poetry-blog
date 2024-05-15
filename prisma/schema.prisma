@@ -52,11 +52,11 @@ model Publication {
   title         String
   authorship    String
   author        String
-  link          String
-  collaborators String[]
+  link          String?
+  // collaborators String[]
   type          String
-  fandom        String
-  group         String
+  fandom        String?
+  group         String?
   characters    String[]
   rating        String
   relationships String
@@ -64,6 +64,7 @@ model Publication {
   description   String
   notes         String
   access        String
+  image         String?
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
   user          User      @relation(fields: [userId], references: [id])
