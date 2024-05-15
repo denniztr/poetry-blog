@@ -52,6 +52,19 @@ export async function POST(request: Request) {
       },
     });
 
+    await prisma.user.update({
+      where: {
+        id: currentUser.id,
+      },
+      data: {
+        publications: {
+          connect: {
+            id: publication.id,
+          },
+        },
+      },
+    });
+
     return NextResponse.json(publication, { status: 201 });
   } catch (error) {
     console.log(error + 'POSTFICTION_ERROR');

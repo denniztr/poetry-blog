@@ -19,7 +19,7 @@ const useRoutes = () => {
       {
         label: 'Опубликовать',
         path: '/fanfiction/add',
-        active: pathname === '/fanfiction/add'
+        active: pathname.startsWith('/fanfiction/add')
       },
       {
         label: 'Ордеры',

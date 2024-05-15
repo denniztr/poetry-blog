@@ -19,6 +19,9 @@ export async function POST(request: Request) {
         name,
         hashedPassword,
       },
+      include: {
+        publications: true
+      }
     });
 
     return NextResponse.json(user, { status: 200 });
