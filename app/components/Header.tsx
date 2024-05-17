@@ -3,10 +3,12 @@
 import { useState } from 'react';
 import { User } from '@prisma/client';
 import { usePathname } from 'next/navigation';
-import { signOut } from 'next-auth/react';
+
 import Link from 'next/link';
 import Image from 'next/image';
+
 import ProfileDrawer from '@/app/components/MenuDrawer';
+import Avatar from '@/app/components/Avatar';
 
 import useRoutes from '@/app/hooks/useRoutes';
 import Notification from '@/app/components/Notification';
@@ -14,6 +16,7 @@ import Notification from '@/app/components/Notification';
 import { MdMenu } from 'react-icons/md';
 
 import clsx from 'clsx';
+
 
 export default function Header({ currentUser }: { currentUser: User }) {
   const pathname = usePathname();
@@ -89,10 +92,13 @@ export default function Header({ currentUser }: { currentUser: User }) {
                   </li>
                 </>
               ) : (
-                <div className="flex gap-6 text-sm">
-                  <Notification />
-                  {/* <p onClick={() => signOut()} className='cursor-pointer'>Выйти</p> */}
-                  <p onClick={() => setDrawerOpen(true)}>Привет, {currentUser.name}</p>
+                <div className="flex gap-6 text-sm items-center">
+                  {/* <Notification /> */}
+                  <p>{currentUser.name}</p>
+                  <div onClick={() => setDrawerOpen(true)} className='cursor-pointer relative'>
+                    <Avatar />
+                    <div className="absolute w-[10px] h-[10px] bg-orange-500 rounded-full top-0 right-0"></div>
+                  </div>
                 </div>
               )}
             </ul>

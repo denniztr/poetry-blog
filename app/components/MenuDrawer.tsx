@@ -4,7 +4,7 @@
 import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { IoClose } from "react-icons/io5";
-
+import { signOut } from 'next-auth/react';
 
 interface ProfileDrawerProps {
   isOpen: boolean;
@@ -62,6 +62,9 @@ const ProfileDrawer: React.FC<ProfileDrawerProps> = ({
                         <div className="flex flex-col items-center">
                           <div className="mb-2">
                             data
+                          </div>
+                          <div className="cursor-pointer" onClick={() => signOut()}>
+                            <p>Выйти из профиля</p>
                           </div>
                         </div>
                       </div>
