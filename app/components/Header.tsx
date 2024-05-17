@@ -1,99 +1,107 @@
 'use client';
 
+import { useState } from 'react';
 import { User } from '@prisma/client';
-
 import { usePathname } from 'next/navigation';
+import { signOut } from 'next-auth/react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { MdMenu } from 'react-icons/md';
+import ProfileDrawer from '@/app/components/MenuDrawer';
+
 import useRoutes from '@/app/hooks/useRoutes';
-import { signOut } from 'next-auth/react';
+import Notification from '@/app/components/Notification';
+
+import { MdMenu } from 'react-icons/md';
+
 import clsx from 'clsx';
 
 export default function Header({ currentUser }: { currentUser: User }) {
   const pathname = usePathname();
   const routes = useRoutes();
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   return (
-    <section
-      className={clsx(
-        `
+    <>
+      <ProfileDrawer isOpen={drawerOpen} onClose={() => setDrawerOpen(false)} />
+      <section
+        className={clsx(
+          `
             w-full 
             absolute 
             z-20
           `,
-        pathname === '/register' && 'hidden'
-      )}
-    >
-      <header className="max-w-[1240px] m-auto p-6 flex justify-between items-center">
-        <div className="flex items-center gap-2">
-          <div className="h-7 w-8 relative opacity-70">
-            <Image
-              src="/logo.png"
-              alt="Logo"
-              fill
-              className="object-fit rounded-sm"
-            />
+          pathname === '/register' && 'hidden'
+        )}
+      >
+        <header className="max-w-[1240px] m-auto p-6 flex justify-between items-center">
+          <div className="flex items-center gap-2">
+            <div className="h-7 w-8 relative opacity-70">
+              <Image
+                src="/logo.png"
+                alt="Logo"
+                fill
+                className="object-fit rounded-sm"
+              />
+            </div>
+            <Link href="/" className="text-white tracking-wide">
+              FicLibrary
+            </Link>
           </div>
-          <Link href="/" className="text-white tracking-wide">
-            FicLibrary
-          </Link>
-        </div>
-        <nav className="hidden md:block">
-          <ul className="text-gray-300 flex space-x-6 items-center font-normal">
-            {routes.map((route, index) => (
-              <li key={index} className="pb-1">
-                <Link
-                  className={clsx(
-                    `
+          <nav className="hidden md:block">
+            <ul className="text-gray-300 flex space-x-6 items-center font-normal">
+              {routes.map((route, index) => (
+                <li key={index} className="pb-1">
+                  <Link
+                    className={clsx(
+                      `
                       text-sm 
                       pb-1 
                       transition 
                       duration-300 
                       hover:border-b
                     `,
-                    route.active && 'border-b'
-                  )}
-                  href={route.path}
-                >
-                  {route.label}
-                </Link>
-              </li>
-            ))}
-            <div className="w-4 h-[1px] bg-white" />
-            {!currentUser ? (
-              <>
-                <li>
-                  <Link
-                    href="/register"
-                    className="text-sm pb-1 transition duration-300 hover:border-b"
+                      route.active && 'border-b'
+                    )}
+                    href={route.path}
                   >
-                    Регистрация
+                    {route.label}
                   </Link>
                 </li>
-                <li>
-                  <Link
-                    href="/register"
-                    className="text-sm pb-1 transition duration-300 hover:border-b"
-                  >
-                    Войти
-                  </Link>
-                </li>
-              </>
-            ) : (
-              <>
-                <h5 className="text-xs">
-                  Привет, <span>{currentUser.name}</span>
-                </h5>
-                <p onClick={() => signOut()} className='cursor-pointer'>Выйти</p>
-              </>
-            )}
-          </ul>
-        </nav>
-        <div className="block md:hidden text-gray-200 font-semibold">
-          <MdMenu size={25} />
-        </div>
-      </header>
-    </section>
+              ))}
+              <div className="w-4 h-[1px] bg-white" />
+              {!currentUser ? (
+                <>
+                  <li>
+                    <Link
+                      href="/register"
+                      className="text-sm pb-1 transition duration-300 hover:border-b"
+                    >
+                      Регистрация
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/register"
+                      className="text-sm pb-1 transition duration-300 hover:border-b"
+                    >
+                      Войти
+                    </Link>
+                  </li>
+                </>
+              ) : (
+                <div className="flex gap-6 text-sm">
+                  <Notification />
+                  {/* <p onClick={() => signOut()} className='cursor-pointer'>Выйти</p> */}
+                  <p onClick={() => setDrawerOpen(true)}>Привет, {currentUser.name}</p>
+                </div>
+              )}
+            </ul>
+          </nav>
+          <div className="block md:hidden text-gray-200 font-semibold">
+            <MdMenu size={25} />
+          </div>
+        </header>
+      </section>
+    </>
   );
 }
