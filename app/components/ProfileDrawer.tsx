@@ -1,20 +1,23 @@
-"use client";
+'use client';
 
 
-import { Fragment } from "react";
-import { Dialog, Transition } from "@headlessui/react";
-import { IoClose } from "react-icons/io5";
+import { User } from '@prisma/client';
+
+import { Fragment } from 'react';
+
+import { Dialog, Transition } from '@headlessui/react';
+
+import { IoClose } from 'react-icons/io5';
 import { signOut } from 'next-auth/react';
 
 interface ProfileDrawerProps {
   isOpen: boolean;
   onClose: () => void;
+  user: User
 }
 
-const ProfileDrawer: React.FC<ProfileDrawerProps> = ({
-  isOpen,
-  onClose,
-}) => {
+const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ isOpen, onClose, user }) => {
+  const { name, email } = user;
 
   return (
     <>
@@ -43,7 +46,7 @@ const ProfileDrawer: React.FC<ProfileDrawerProps> = ({
                   leaveTo="translate-x-full"
                 >
                   <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
-                    <div className="flex h-full flex-col overflow-y-scroll bg-white/80 py-6 shadow-xl">
+                    <div className="flex h-full flex-col overflow-y-scroll bg-gray-300/90 py-6 shadow-xl">
                       <div className="px-4 sm:px-6">
                         <div className="flex items-start justify-end">
                           <div className="ml-3 flex h-7 items-center">
@@ -60,10 +63,11 @@ const ProfileDrawer: React.FC<ProfileDrawerProps> = ({
                       </div>
                       <div className="relative mt-6 flex-1 px-4 sm:px-6">
                         <div className="flex flex-col items-center">
-                          <div className="mb-2">
-                            data
-                          </div>
-                          <div className="cursor-pointer" onClick={() => signOut()}>
+                          <div className="mb-2">{name}, {email}</div>
+                          <div
+                            className="cursor-pointer"
+                            onClick={() => signOut()}
+                          >
                             <p>Выйти из профиля</p>
                           </div>
                         </div>

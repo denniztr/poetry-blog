@@ -1,22 +1,20 @@
 'use client';
 
 import { useState } from 'react';
-import { User } from '@prisma/client';
-import { usePathname } from 'next/navigation';
 
+import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 
-import ProfileDrawer from '@/app/components/MenuDrawer';
+import ProfileDrawer from '@/app/components/ProfileDrawer';
 import Avatar from '@/app/components/Avatar';
-
 import useRoutes from '@/app/hooks/useRoutes';
-import Notification from '@/app/components/Notification';
+import MenuButton from '@/app/components/ProfileDrawerButton';
 
 import { MdMenu } from 'react-icons/md';
-
 import clsx from 'clsx';
 
+import { User } from '@prisma/client';
 
 export default function Header({ currentUser }: { currentUser: User }) {
   const pathname = usePathname();
@@ -25,7 +23,7 @@ export default function Header({ currentUser }: { currentUser: User }) {
 
   return (
     <>
-      <ProfileDrawer isOpen={drawerOpen} onClose={() => setDrawerOpen(false)} />
+      <ProfileDrawer isOpen={drawerOpen} onClose={() => setDrawerOpen(false)} user={currentUser} />
       <section
         className={clsx(
           `
@@ -93,18 +91,24 @@ export default function Header({ currentUser }: { currentUser: User }) {
                 </>
               ) : (
                 <div className="flex gap-6 text-sm items-center">
-                  {/* <Notification /> */}
                   <p>{currentUser.name}</p>
-                  <div onClick={() => setDrawerOpen(true)} className='cursor-pointer relative'>
+                  <div
+                    onClick={() => setDrawerOpen(true)}
+                    className="cursor-pointer relative"
+                  >
                     <Avatar />
-                    <div className="absolute w-[10px] h-[10px] bg-orange-500 rounded-full top-0 right-0"></div>
+                    <div className="absolute w-[10px] h-[10px] bg-orange-500 rounded-full top-0 right-0 shadow-md"></div>
                   </div>
                 </div>
               )}
             </ul>
           </nav>
-          <div className="block md:hidden text-gray-200 font-semibold">
-            <MdMenu size={25} />
+          <div
+            className="block md:hidden text-gray-200 font-semibold"
+            onClick={() => setDrawerOpen(true)}
+          >
+            <MenuButton isOpen={drawerOpen}/>
+            {/* <MdMenu size={25} /> */}
           </div>
         </header>
       </section>
