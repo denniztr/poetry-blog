@@ -11,10 +11,10 @@ import Avatar from '@/app/components/Avatar';
 import useRoutes from '@/app/hooks/useRoutes';
 import MenuButton from '@/app/components/ProfileDrawerButton';
 
-import { MdMenu } from 'react-icons/md';
 import clsx from 'clsx';
 
 import { User } from '@prisma/client';
+
 
 export default function Header({ currentUser }: { currentUser: User }) {
   const pathname = usePathname();
@@ -108,7 +108,6 @@ export default function Header({ currentUser }: { currentUser: User }) {
             onClick={() => setDrawerOpen(true)}
           >
             <MenuButton isOpen={drawerOpen}/>
-            {/* <MdMenu size={25} /> */}
           </div>
         </header>
       </section>

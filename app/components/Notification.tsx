@@ -5,9 +5,9 @@ const Notification = () => {
     <div className="relative">
       <IoNotificationsOutline 
         size={25} 
-        className="cursor-pointer"
+        className="cursor-pointer text-gray-700"
       />
-      <div className="absolute w-[10px] h-[10px] bg-orange-500 rounded-full top-0 right-0"></div>
+      <div className="absolute w-[9px] h-[9px] bg-orange-500 rounded-full top-0 right-[2px]"></div>
     </div>
   )
 }

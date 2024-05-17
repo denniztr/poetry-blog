@@ -1,23 +1,27 @@
 'use client';
 
+import { Fragment } from 'react';
 
 import { User } from '@prisma/client';
 
-import { Fragment } from 'react';
-
 import { Dialog, Transition } from '@headlessui/react';
-
 import { IoClose } from 'react-icons/io5';
 import { signOut } from 'next-auth/react';
+
+import Notification from '@/app/components/Notification';
 
 interface ProfileDrawerProps {
   isOpen: boolean;
   onClose: () => void;
-  user: User
+  user: User;
 }
 
-const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ isOpen, onClose, user }) => {
-  const { name, email } = user;
+const ProfileDrawer: React.FC<ProfileDrawerProps> = ({
+  isOpen,
+  onClose,
+  user,
+}) => {
+
 
   return (
     <>
@@ -46,10 +50,11 @@ const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ isOpen, onClose, user }) 
                   leaveTo="translate-x-full"
                 >
                   <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
-                    <div className="flex h-full flex-col overflow-y-scroll bg-gray-300/90 py-6 shadow-xl">
+                    <div className="flex h-full flex-col overflow-y-scroll bg-gradient-to-br from-gray-200/90 via-gray-300/90 to-gray-400/90 py-6 shadow-xl">
                       <div className="px-4 sm:px-6">
                         <div className="flex items-start justify-end">
-                          <div className="ml-3 flex h-7 items-center">
+                          <div className="w-full ml-3 flex h-7 items-center justify-between">
+                            <Notification />
                             <button
                               onClick={onClose}
                               type="button"
@@ -61,16 +66,29 @@ const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ isOpen, onClose, user }) 
                           </div>
                         </div>
                       </div>
-                      <div className="relative mt-6 flex-1 px-4 sm:px-6">
-                        <div className="flex flex-col items-center">
-                          <div className="mb-2">{name}, {email}</div>
-                          <div
-                            className="cursor-pointer"
-                            onClick={() => signOut()}
-                          >
-                            <p>Выйти из профиля</p>
+                      <div className="relative flex-1 px-4 sm:px-6">
+                        <div className="flex flex-col items-center my-4">
+                          <div className="mb-6 font-semibold">{user?.name}</div>
+                        </div>
+                        <div className='space-y-8'>
+                          <div>
+                            <ul className="space-y-2">
+                              <li>Фанфики</li>
+                              <li>Избранное</li>
+                              <li>Опубликовать</li>
+                              <li>Вики</li>
+                              <li>Редактировать профиль</li>
+                            </ul>
                           </div>
                         </div>
+                      </div>
+                      <div className="text-center">
+                        <p
+                          className="cursor-pointer inline-block"
+                          onClick={() => signOut()}
+                        >
+                          Выйти из профиля
+                        </p>
                       </div>
                     </div>
                   </Dialog.Panel>
