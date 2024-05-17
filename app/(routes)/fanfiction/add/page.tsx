@@ -1,5 +1,8 @@
+import Link from 'next/link';
+
 import SectionTitle from '@/app/components/SectionTitle';
 import AddFicForm from '@/app/components/addFiction/AddFicForm';
+
 import { FaInfo } from 'react-icons/fa6';
 
 
@@ -32,7 +35,7 @@ export default async function Home() {
           </p>
           <div className="flex items-center gap-1">
             <FaInfo size={15} />
-            <button className="underline">Ознакомиться с правилами</button>
+            <Link href='/fanfiction/add/rules' className='underline'>Ознакомиться с правилами</Link>
           </div>
         </div>
         <AddFicForm />
