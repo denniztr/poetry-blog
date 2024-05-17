@@ -8,14 +8,15 @@ import clsx from 'clsx';
 interface TextareaProps {
   register: UseFormRegister<FieldValues>
   id: string
+  className?: string
 }
 
-const Textarea: React.FC<TextareaProps> = ({ register, id }) => {
+const Textarea: React.FC<TextareaProps> = ({ register, id, className: styles }) => {
   return (
     <textarea 
       {...register(id, { required: true })}
       className={clsx(
-        'block min-h-[200px] w-full h-10 rounded-lg border-none bg-white/20 py-1.5 px-3 text-sm/6 text-white',
+        `block min-h-[200px] w-full h-10 rounded-lg border-none bg-white/20 py-1.5 px-3 text-sm/6 text-white ${styles && styles}`,
         'focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25',
       )}
     />
