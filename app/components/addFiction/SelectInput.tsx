@@ -6,7 +6,7 @@ import { SetStateAction, useState } from 'react';
 import { Transition } from '@headlessui/react';
 import { IoIosArrowDown } from 'react-icons/io';
 import { FieldErrors, FieldValues, UseFormRegister, UseFormSetValue } from 'react-hook-form';
-import Input from '@/app/components/ui/inputs/addFictionInput';
+
 
 import relations from '@/app/mockdata/relation';
 import access from '@/app/constants/publicationAccess';
