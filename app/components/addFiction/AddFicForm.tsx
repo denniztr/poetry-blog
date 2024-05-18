@@ -68,7 +68,7 @@ const AddFicForm = () => {
       .then((cb) => {
         console.log('the data has been sent: ', cb)
         if (cb?.status === 201) {
-          router.push(`/fanfiction/add/${cb.data.id}`)
+          router.push(`/fanfiction/edit/${cb.data.id}`)
         }
       })
       .catch((error) => console.log('error: ', error))
