@@ -2,7 +2,7 @@
 
 import { signIn } from 'next-auth/react';
 import Image from 'next/image';
-import socialButtons from '@/app/constants/socialButtons';
+import socialButtons from '@/app/constants/data/socialButtons';
 
 import clsx from 'clsx';
 

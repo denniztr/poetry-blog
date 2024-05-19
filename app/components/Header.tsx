@@ -9,7 +9,7 @@ import Image from 'next/image';
 import ProfileDrawer from '@/app/components/profileDrawer/ProfileDrawer';
 import Avatar from '@/app/components/Avatar';
 import useRoutes from '@/app/hooks/useRoutes';
-import MenuButton from '@/app/components/ProfileDrawerButton';
+import MenuButton from '@/app/components/MobMenuButton';
 
 import clsx from 'clsx';
 
@@ -24,16 +24,7 @@ export default function Header({ currentUser }: { currentUser: User }) {
   return (
     <>
       <ProfileDrawer isOpen={drawerOpen} onClose={() => setDrawerOpen(false)} user={currentUser} />
-      <section
-        className={clsx(
-          `
-            w-full 
-            absolute 
-            z-20
-          `,
-          pathname === '/register' && 'hidden'
-        )}
-      >
+      <section className={clsx(`w-full absolute z-20`, pathname === '/register' && 'hidden')}>
         <header className="max-w-[1240px] m-auto p-6 flex justify-between items-center">
           <div className="flex items-center gap-2">
             <div className="h-7 w-8 relative opacity-70">

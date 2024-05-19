@@ -1,15 +1,18 @@
 'use client';
 
-
 import { useEffect } from 'react';
 import { SetStateAction, useState } from 'react';
 import { Transition } from '@headlessui/react';
 import { IoIosArrowDown } from 'react-icons/io';
-import { FieldErrors, FieldValues, UseFormRegister, UseFormSetValue } from 'react-hook-form';
-
+import {
+  FieldErrors,
+  FieldValues,
+  UseFormRegister,
+  UseFormSetValue,
+} from 'react-hook-form';
 
 import relations from '@/app/mockdata/relation';
-import access from '@/app/constants/publicationAccess';
+import access from '@/app/constants/data/publicationAccess';
 import clsx from 'clsx';
 
 type SelectVariant = 'group' | 'fandom' | 'character' | 'relation' | 'access';
@@ -27,8 +30,8 @@ interface SelectProps {
   chosenFandom: string;
   setChosenCharacter: React.Dispatch<SetStateAction<string>>;
   chosenCharacter: string;
-  register: UseFormRegister<FieldValues>
-  setValue: UseFormSetValue<FieldValues>
+  register: UseFormRegister<FieldValues>;
+  setValue: UseFormSetValue<FieldValues>;
 }
 
 const Select: React.FC<SelectProps> = ({
@@ -42,14 +45,14 @@ const Select: React.FC<SelectProps> = ({
   chosenFandom,
   chosenCharacter,
   register,
-  setValue
+  setValue,
 }) => {
   const [isOpen, setIsOpen] = useState<SelectVariant | null>(null);
 
   const handleClick = (id: SelectVariant) => {
     setIsOpen(isOpen === id ? null : id);
   };
-  
+
   useEffect(() => {
     // Установка значения chosenRelation в register
     setValue(id, chosenRelation);
@@ -81,10 +84,10 @@ const Select: React.FC<SelectProps> = ({
         className="cursor-pointer"
         placeholder={placeholder}
         readOnly={true}
-        // value={chosenRelation} 
+        // value={chosenRelation}
         // setChosenCharacter={function (value: SetStateAction<string>): void {
         //   throw new Error('Function not implemented.');
-        // } } 
+        // } }
         id={id}
         register={register}
       />
