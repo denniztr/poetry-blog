@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 
-import ProfileDrawer from '@/app/components/ProfileDrawer';
+import ProfileDrawer from '@/app/components/profileDrawer/ProfileDrawer';
 import Avatar from '@/app/components/Avatar';
 import useRoutes from '@/app/hooks/useRoutes';
 import MenuButton from '@/app/components/ProfileDrawerButton';

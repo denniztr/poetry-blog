@@ -8,6 +8,7 @@ import { Dialog, Transition } from '@headlessui/react';
 import { IoClose } from 'react-icons/io5';
 import { signOut } from 'next-auth/react';
 
+import NavigationList from '@/app/components/profileDrawer/ui/NavigationList';
 import Notification from '@/app/components/Notification';
 
 interface ProfileDrawerProps {
@@ -66,19 +67,13 @@ const ProfileDrawer: React.FC<ProfileDrawerProps> = ({
                           </div>
                         </div>
                       </div>
-                      <div className="relative flex-1 px-4 sm:px-6">
-                        <div className="flex flex-col items-center my-4">
+                      <div className="relative flex-1">
+                        <div className="flex flex-col items-center my-4 px-4 sm:px-6">
                           <div className="mb-6 font-semibold">{user?.name}</div>
                         </div>
                         <div className='space-y-8'>
                           <div>
-                            <ul className="space-y-2">
-                              <li>Фанфики</li>
-                              <li>Избранное</li>
-                              <li>Опубликовать</li>
-                              <li>Вики</li>
-                              <li>Редактировать профиль</li>
-                            </ul>
+                            <NavigationList />
                           </div>
                         </div>
                       </div>
