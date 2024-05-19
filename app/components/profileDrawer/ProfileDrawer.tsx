@@ -73,7 +73,7 @@ const ProfileDrawer: React.FC<ProfileDrawerProps> = ({
                         </div>
                         <div className='space-y-8'>
                           <div>
-                            <NavigationList />
+                            <NavigationList onClose={onClose} />
                           </div>
                         </div>
                       </div>

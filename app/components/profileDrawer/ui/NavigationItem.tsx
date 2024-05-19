@@ -11,6 +11,7 @@ interface NavigationItemProps {
   subMenuItems?: { label: string; href: string; }[]; 
   open: string | null;
   toggleMenu: any;
+  onClose: () => void
 }
 
 const NavigationItem: React.FC<NavigationItemProps> = ({
@@ -19,7 +20,8 @@ const NavigationItem: React.FC<NavigationItemProps> = ({
   iconAfter: IconAfter,
   subMenuItems,
   open,
-  toggleMenu
+  toggleMenu,
+  onClose
 }) => {
 
   const handleToggleSubMenu = () => {
@@ -34,7 +36,7 @@ const NavigationItem: React.FC<NavigationItemProps> = ({
       <div className="flex items-center justify-between gap-6">
         <div className="flex items-center gap-6">
           <Icon className='h-5 w-5' />
-          <Link href="#">{label}</Link>
+          <Link href='/'>{label}</Link>
         </div>
         {IconAfter && <IconAfter className={clsx(`h-5 w-5`, open === label && 'rotate-180')}/>}
       </div>
@@ -48,7 +50,7 @@ const NavigationItem: React.FC<NavigationItemProps> = ({
             className="overflow-hidden pl-10"
           >
             {subMenuItems.map((item, index) => (
-              <li key={index} className="my-2 py-2 transition-all duration-300 hover:bg-gray-400/90">
+              <li key={index} className="my-2 py-2 transition-all duration-300 hover:bg-gray-400/90" onClick={onClose}>
                 <Link href={item.href} className="text-gray-600 hover:text-gray-800">{item.label}</Link>
               </li>
             ))}

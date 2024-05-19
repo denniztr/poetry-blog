@@ -9,7 +9,7 @@ import {
   Transition,
 } from '@headlessui/react';
 
-import data from '@/app/constants/fanfictionCardMenu';
+import data from '@/app/constants/navigation/fictionCard';
 import CardMenuItem from './ui/cardMenuItem';
 
 interface CardPopUpProps {

@@ -12,7 +12,7 @@ import SelectInput from '@/app/components/ui/inputs/selectInput';
 import MultipleDataInput from '@/app/components/ui/inputs/multipleDataInput';
 import Button from '@/app/components/ui/buttons/ficFormButton';
 
-import ratings from '@/app/constants/rating';
+import ratings from '@/app/constants/data/rating';
 
 import axios from 'axios';
 import clsx from 'clsx';

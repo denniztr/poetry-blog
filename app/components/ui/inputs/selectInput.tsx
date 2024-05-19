@@ -5,7 +5,7 @@ import { UseFormSetValue, UseFormRegister, FieldValues } from 'react-hook-form';
 import { IoIosArrowDown } from 'react-icons/io';
 
 import relations from '@/app/mockdata/relation';
-import access from '@/app/constants/publicationAccess';
+import access from '@/app/constants/data/publicationAccess';
 
 import clsx from 'clsx';
 

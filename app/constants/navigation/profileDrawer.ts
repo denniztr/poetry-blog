@@ -12,20 +12,22 @@ const nav = [
   {
     label: 'Мой профиль',
     icon: CgProfile,
+    path: '/authors'
   },
   {
     label: 'Сообщения',
     icon: TbBrandMessenger,
+    path: '/'
   },
   {
     label: 'Для авторов',
     icon: BsPencil,
     iconAfter: IoIosArrowDown,
     subMenuItems: [
-      { label: 'Добавить фанфик', href: '#' },
-      { label: 'Мои фанфики', href: '#' },
-      { label: 'Отзывы', href: '#' },
-      { label: 'Мой блог', href: '#' },
+      { label: 'Добавить фанфик', href: '/fanfiction/add' },
+      { label: 'Мои фанфики', href: '/fanfiction/add' },
+      { label: 'Отзывы', href: '/fanfiction/add' },
+      { label: 'Мой блог', href: '/fanfiction/add' },
     ],
   },
   {
@@ -33,11 +35,11 @@ const nav = [
     icon: FaBook,
     iconAfter: IoIosArrowDown,
     subMenuItems: [
-      { label: 'Избранное', href: '#' },
-      { label: 'Обсуждения', href: '#' },
-      { label: 'Подписки', href: '#' },
-      { label: 'Понравившиеся работы', href: '#' },
-      { label: 'Прочитанные работы', href: '#' },
+      { label: 'Избранное', href: '/' },
+      { label: 'Обсуждения', href: '/' },
+      { label: 'Подписки', href: '/' },
+      { label: 'Понравившиеся работы', href: '/' },
+      { label: 'Прочитанные работы', href: '/' },
     ],
   },
   {
@@ -45,10 +47,10 @@ const nav = [
     icon: FaJediOrder,
     iconAfter: IoIosArrowDown,
     subMenuItems: [
-      { label: 'Добавить заявку', href: '#' },
-      { label: 'Мои заявки', href: '#' },
-      { label: 'Фанфики по моим заявкам', href: '#' },
-      { label: 'Закладки', href: '#' },
+      { label: 'Добавить заявку', href: '/orders' },
+      { label: 'Мои заявки', href: '/orders' },
+      { label: 'Фанфики по моим заявкам', href: '/orders' },
+      { label: 'Закладки', href: '/orders' },
     ],
   },
   {
@@ -56,8 +58,8 @@ const nav = [
     icon: MdOutlineContactSupport,
     iconAfter: IoIosArrowDown,
     subMenuItems: [
-      { label: 'Служба поддержки', href: '#' },
-      { label: 'Сообщить об ошибке', href: '#' },
+      { label: 'Служба поддержки', href: '/' },
+      { label: 'Сообщить об ошибке', href: '/' },
     ],
   },
   {
