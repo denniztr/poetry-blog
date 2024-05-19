@@ -5,6 +5,8 @@ import { FaBook } from 'react-icons/fa';
 import { FaJediOrder } from 'react-icons/fa6';
 import { MdOutlineContactSupport } from 'react-icons/md';
 import { IoIosArrowDown } from 'react-icons/io';
+import { FaSignOutAlt } from "react-icons/fa";
+
 
 const nav = [
   {
@@ -20,8 +22,10 @@ const nav = [
     icon: BsPencil,
     iconAfter: IoIosArrowDown,
     subMenuItems: [
-      { label: 'Вариант 1', href: '#1' },
-      { label: 'Вариант 2', href: '#2' },
+      { label: 'Добавить фанфик', href: '#' },
+      { label: 'Мои фанфики', href: '#' },
+      { label: 'Отзывы', href: '#' },
+      { label: 'Мой блог', href: '#' },
     ],
   },
   {
@@ -29,8 +33,11 @@ const nav = [
     icon: FaBook,
     iconAfter: IoIosArrowDown,
     subMenuItems: [
-      { label: 'Вариант 1', href: '#1' },
-      { label: 'Вариант 2', href: '#2' },
+      { label: 'Избранное', href: '#' },
+      { label: 'Обсуждения', href: '#' },
+      { label: 'Подписки', href: '#' },
+      { label: 'Понравившиеся работы', href: '#' },
+      { label: 'Прочитанные работы', href: '#' },
     ],
   },
   {
@@ -38,8 +45,10 @@ const nav = [
     icon: FaJediOrder,
     iconAfter: IoIosArrowDown,
     subMenuItems: [
-      { label: 'Вариант 1', href: '#1' },
-      { label: 'Вариант 2', href: '#2' },
+      { label: 'Добавить заявку', href: '#' },
+      { label: 'Мои заявки', href: '#' },
+      { label: 'Фанфики по моим заявкам', href: '#' },
+      { label: 'Закладки', href: '#' },
     ],
   },
   {
@@ -47,9 +56,13 @@ const nav = [
     icon: MdOutlineContactSupport,
     iconAfter: IoIosArrowDown,
     subMenuItems: [
-      { label: 'Вариант 1', href: '#1' },
-      { label: 'Вариант 2', href: '#2' },
+      { label: 'Служба поддержки', href: '#' },
+      { label: 'Сообщить об ошибке', href: '#' },
     ],
+  },
+  {
+    label: 'Выйти из профиля',
+    icon: FaSignOutAlt,
   },
 ];
 

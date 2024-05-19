@@ -77,7 +77,7 @@ const ProfileDrawer: React.FC<ProfileDrawerProps> = ({
                           </div>
                         </div>
                       </div>
-                      <div className="text-center">
+                      <div className="text-center pt-6">
                         <p
                           className="cursor-pointer inline-block"
                           onClick={() => signOut()}
