@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { AnimatePresence, motion } from 'framer-motion';
 import clsx from 'clsx';
 
+
 interface NavigationItemProps {
   label: string;
   icon: any;
@@ -21,10 +22,14 @@ const NavigationItem: React.FC<NavigationItemProps> = ({
   toggleMenu
 }) => {
 
+  const handleToggleSubMenu = () => {
+    toggleMenu(open === label ? null : label);
+  };
+
   return (
     <li 
       className={clsx(`text-gray-800 px-4 py-3 sm:px-6 transition-all duration-300 hover:bg-gray-300/90 cursor-pointer`, open === label && 'bg-gray-300/90')} 
-      onClick={() => toggleMenu(label)}
+      onClick={handleToggleSubMenu}
     >
       <div className="flex items-center justify-between gap-6">
         <div className="flex items-center gap-6">
