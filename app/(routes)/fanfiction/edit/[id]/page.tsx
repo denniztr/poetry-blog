@@ -22,15 +22,7 @@ export default async function Home({
       <div>
         <h2 className="text-4xl">{publication?.title}</h2>
       </div>
-      <Content id={id} />
-      {/* <section className="flex mt-4 gap-3 flex-col md:flex-row pb-6"> */}
-        {/* <Sidebar publicationId={id} />
-        <section className="w-full border border-gray-700/30 bg-black/40 px-4 py-8 space-y-4 text-white"> */}
-          {/* <EditPart /> */}
-          {/* <AddFicForm /> */}
-          {/* <EditCover /> */}
-        {/* </section>
-      </section> */}
+      <Content />
     </main>
   );
 }
